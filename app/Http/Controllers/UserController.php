@@ -6,8 +6,8 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    public function list() {
-        $users = User::all();
+    public function list($pagination = 30) {
+        $users = User::paginate($pagination);
 
         LogController::store('View users');
         return view('user.list', compact('users'));

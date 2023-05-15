@@ -6,8 +6,8 @@ use App\Models\Customer;
 
 class CustomerController extends Controller
 {
-    public function dashboard() {
-        $customers = Customer::all();
+    public function list($pagination = 30) {
+        $customers = Customer::paginate($pagination);
 
         return view('dashboard', compact('customers'));
     }

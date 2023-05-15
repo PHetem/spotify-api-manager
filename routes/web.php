@@ -33,7 +33,7 @@ Route::middleware([Authenticate::class, Navigate::class])->group(function () {
 
     Route::controller(CustomerController::class)->group(function () {
 
-        Route::get('/', 'dashboard')
+        Route::get('/', 'list')
             ->name('dashboard');
 
         Route::get('/customers/details/{id}', 'details')

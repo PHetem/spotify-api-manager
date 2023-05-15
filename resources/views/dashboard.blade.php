@@ -22,6 +22,9 @@
                     </tr>
                 @endforeach
             </table>
+            <div>
+                {{ $customers->links() }}
+            </div>
         @endif
     </div>
 </div>

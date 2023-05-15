@@ -26,6 +26,9 @@
                     </tr>
                 @endforeach
             </table>
+            <div>
+                {{ $users->links() }}
+            </div>
         @endif
     </div>
 </div>
