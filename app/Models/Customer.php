@@ -16,7 +16,7 @@ class Customer extends Model
         'country',
         'followerCount',
         'profileURL',
-        'profilePicture',
+        'profilePictureURL',
         'accountType',
         'accessToken',
         'refreshToken',

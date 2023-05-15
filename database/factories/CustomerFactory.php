@@ -24,7 +24,7 @@ class CustomerFactory extends Factory
             'country' => fake()->countryCode(),
             'followerCount' => rand(1, 999),
             'profileURL' => 'https://open.spotify.com/user/12167234083',
-            'profilePicture' => fake()->imageUrl(),
+            'profilePictureURL' => fake()->imageUrl(),
             'accountType' => fake()->randomElement(['Premium', 'Family', 'Standard']),
             'accessToken' => Str::random(30),
             'refreshToken' => Str::random(30),

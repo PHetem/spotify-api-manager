@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-4">
                     <div>
-                        <img width="200" src="{{ asset($customer->profilePicture) }}">
+                        <img width="200" src="{{ asset($customer->profilePictureURL) }}">
                     </div>
                     <div style="margin-top: 15px;">
                         <span><b>{{ $customer->followerCount }} Followers</b></span>
