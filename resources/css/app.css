@@ -1,0 +1,24 @@
+.topnav {
+    background-color: #218838;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 0 !important;
+}
+
+.topnav a, .topnav span {
+    float: right;
+    color: #E8F0FE;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    margin-right: 5px
+}
+
+.topnav a:hover {
+    background-color: #E8F0FE;
+    color: #218838;
+    padding: 8px 12px;
+    margin: 6px 7px 6px 6px;
+}
