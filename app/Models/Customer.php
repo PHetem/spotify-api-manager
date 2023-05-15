@@ -10,8 +10,14 @@ class Customer extends Model
     use HasFactory;
 
     protected $fillable = [
+        'spotifyID',
         'name',
         'email',
+        'country',
+        'followerCount',
+        'profileURL',
+        'profilePicture',
+        'accountType',
         'accessToken',
         'refreshToken',
     ];

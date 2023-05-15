@@ -13,8 +13,14 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
+            $table->string('spotifyID');
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('country');
+            $table->string('followerCount');
+            $table->string('profileURL');
+            $table->string('profilePicture');
+            $table->string('accountType');
             $table->string('accessToken');
             $table->string('refreshToken');
             $table->timestamps();
