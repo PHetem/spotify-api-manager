@@ -22,3 +22,9 @@
     padding: 8px 12px;
     margin: 6px 7px 6px 6px;
 }
+
+.cardtitle {
+    font-weight: bold;
+    font-size: 2em;
+    margin-left: 45px;
+}
