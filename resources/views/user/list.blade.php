@@ -1,11 +1,14 @@
 @extends('layouts.app')
 @section('content')
 <div style="text-align: center; vertical-align: middle; margin-top: 50px;">
-    <div style="margin-top: 30px;">
+    <div style="margin-top: 100px;">
         @if ($users->isEmpty())
             <span style="font-weight: bold; font-size: 2em;">No Users found</span>
             <p>Authorized users will show up here</p>
         @else
+            <div style="margin-bottom: 25px;">
+                <span style="font-weight: bold; font-size: 2em;">Users</span>
+            </div>
             <table class="table table-striped" style="width: 50%; display: inline-table; margin-bottom: 3rem;">
                 <tr>
                     <td style="width:15%"><b>ID</b></td>
