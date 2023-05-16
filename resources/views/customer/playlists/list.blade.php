@@ -7,7 +7,7 @@
             <div class="row">
                 @foreach ($customer->playlists as $playlist)
                     @php
-                        $playlistName = strlen($playlist->name) > 20 ? substr($playlist->name, 0, 20) . '...' : $playlist->name;
+                        $playlistName = strlen($playlist->name) > 23 ? substr($playlist->name, 0, 20) . '...' : $playlist->name;
                     @endphp
                     <a href="{{ $playlist->URL }}" class="linkdiv col-4 mt-3 ">
                         <div>
