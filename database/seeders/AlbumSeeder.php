@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Customer;
-use App\Models\Album;
+use App\Models\Customer\Customer;
+use App\Models\Customer\Album;
 use Illuminate\Database\Seeder;
 
 class AlbumSeeder extends Seeder

@@ -1,7 +1,7 @@
 <?php
 
 use App\Helpers\NavigationHelper;
-use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LogController;
 use App\Http\Middleware\Authenticate;

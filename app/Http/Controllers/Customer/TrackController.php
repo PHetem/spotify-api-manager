@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Customer;
 
-use App\Models\Track;
-use Illuminate\Http\Request;
+use App\Models\Customer\Track;
+use App\Http\Controllers\Controller;
 
 class TrackController extends Controller
 {

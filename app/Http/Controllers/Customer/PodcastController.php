@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Customer;
 
-use App\Models\Podcast;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Customer\Podcast;
 
 class PodcastController extends Controller
 {

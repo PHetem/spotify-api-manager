@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Customer;
 
-use App\Models\Playlist;
+use App\Http\Controllers\Controller;
+use App\Models\Customer\Playlist;
 
 class PlaylistController extends Controller
 {

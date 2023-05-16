@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\Customer;
+use App\Models\Customer\Customer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Playlist>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Customer\Playlist>
  */
 class PlaylistFactory extends Factory
 {

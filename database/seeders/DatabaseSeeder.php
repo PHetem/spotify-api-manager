@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Podcast;
+use App\Models\Customer\Podcast;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder

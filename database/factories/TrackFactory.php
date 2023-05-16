@@ -2,12 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\Album;
-use App\Models\Customer;
+use App\Models\Customer\Album;
+use App\Models\Customer\Customer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Track>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Customer\Track>
  */
 class TrackFactory extends Factory
 {

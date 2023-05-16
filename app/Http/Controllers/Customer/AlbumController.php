@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Customer;
 
-use App\Models\Album;
-use Illuminate\Http\Request;
+use App\Models\Customer\Album;
+use App\Http\Controllers\Controller;
 
 class AlbumController extends Controller
 {
