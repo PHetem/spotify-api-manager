@@ -26,4 +26,16 @@ class Customer extends Model
     public function playlists(): HasMany {
         return $this->hasMany(Playlist::class, 'customerID', 'id');
     }
+
+    public function albums(): HasMany {
+        return $this->hasMany(Album::class, 'customerID', 'id');
+    }
+
+    public function tracks(): HasMany {
+        return $this->hasMany(Track::class, 'customerID', 'id');
+    }
+
+    public function podcasts(): HasMany {
+        return $this->hasMany(Podcast::class, 'customerID', 'id');
+    }
 }
