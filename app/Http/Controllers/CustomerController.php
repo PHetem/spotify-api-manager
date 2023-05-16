@@ -13,10 +13,12 @@ class CustomerController extends Controller
     }
 
     public function details($id) {
-        $customer = Customer::find($id);
+        $customer = Customer::with('playlists')
+                            ->find($id);
 
         LogController::store('Customer Viewed: ' . $id);
-        return view('customer.view', compact('customer'));    }
+        return view('customer.view', compact('customer'));
+    }
 
     public function delete($id) {
         Customer::find($id)->delete();

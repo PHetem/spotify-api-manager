@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Customer extends Model
 {
@@ -21,4 +22,8 @@ class Customer extends Model
         'accessToken',
         'refreshToken',
     ];
+
+    public function playlists(): HasMany {
+        return $this->hasMany(Playlist::class, 'customerID', 'id');
+    }
 }
