@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('playlists', function (Blueprint $table) {
             $table->id();
+            $table->string('customerID');
+            $table->string('name');
+            $table->string('coverImageURL');
+            $table->string('URL');
             $table->timestamps();
         });
     }
