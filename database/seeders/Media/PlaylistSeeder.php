@@ -1,9 +1,9 @@
 <?php
 
-namespace Database\Seeders\Music;
+namespace Database\Seeders\Media;
 
 use App\Models\Customer\Customer;
-use App\Models\Customer\Playlist;
+use App\Models\Media\Playlist;
 use Illuminate\Database\Seeder;
 
 class PlaylistSeeder extends Seeder

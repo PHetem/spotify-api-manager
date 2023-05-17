@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Music;
+namespace App\Http\Controllers\Media;
 
 use App\Models\Customer\Track;
 use App\Http\Controllers\Controller;

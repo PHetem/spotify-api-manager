@@ -1,14 +1,14 @@
 <?php
 
-namespace Database\Factories\Music;
+namespace Database\Factories\Media;
 
 use App\Models\Customer\Customer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Customer\Album>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Customer\Podcast>
  */
-class AlbumFactory extends Factory
+class PodcastFactory extends Factory
 {
     /**
      * Define the model's default state.

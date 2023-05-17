@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models\Music;
+namespace App\Models\Media;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Playlist extends Model
+class Podcast extends Model
 {
     use HasFactory;
 

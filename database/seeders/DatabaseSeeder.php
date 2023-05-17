@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Customer\Podcast;
 use Database\Seeders\Customer\CustomerSeeder;
-use Database\Seeders\Music\AlbumSeeder;
-use Database\Seeders\Music\PlaylistSeeder;
-use Database\Seeders\Music\PodcastSeeder;
-use Database\Seeders\Music\TrackSeeder;
+use Database\Seeders\Media\AlbumSeeder;
+use Database\Seeders\Media\ArtistSeeder;
+use Database\Seeders\Media\PlaylistSeeder;
+use Database\Seeders\Media\PodcastSeeder;
+use Database\Seeders\Media\TrackSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,10 +19,15 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UserSeeder::class);
         $this->call(LogSeeder::class);
+
         $this->call(CustomerSeeder::class);
+
         $this->call(PlaylistSeeder::class);
         $this->call(PodcastSeeder::class);
+        $this->call(ArtistSeeder::class);
         $this->call(AlbumSeeder::class);
         $this->call(TrackSeeder::class);
+
+        $this->call(APITokenSeeder::class);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Music;
+namespace App\Http\Controllers\Media;
 
 use App\Http\Controllers\Controller;
 use App\Models\Customer\Podcast;
