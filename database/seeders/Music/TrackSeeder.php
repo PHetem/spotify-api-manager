@@ -1,13 +1,13 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Music;
 
 use App\Models\Customer\Customer;
-use App\Models\Customer\Podcast;
+use App\Models\Customer\Track;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class PodcastSeeder extends Seeder
+class TrackSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +15,7 @@ class PodcastSeeder extends Seeder
     public function run(): void
     {
         foreach (Customer::all() as $customer) {
-            Podcast::factory(rand(5, 20))->create(['customerID' => $customer->id]);
+            Track::factory(rand(5, 20))->create(['customerID' => $customer->id]);
         }
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Music;
 
 use App\Models\Customer\Customer;
 use App\Models\Customer\Album;

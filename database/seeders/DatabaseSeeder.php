@@ -3,6 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\Customer\Podcast;
+use Database\Seeders\Customer\CustomerSeeder;
+use Database\Seeders\Music\AlbumSeeder;
+use Database\Seeders\Music\PlaylistSeeder;
+use Database\Seeders\Music\PodcastSeeder;
+use Database\Seeders\Music\TrackSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder

@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Customer;
 
 use App\Models\Customer\Customer;
 use Illuminate\Database\Seeder;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Music;
 
 use App\Models\Customer\Customer;
 use Illuminate\Database\Eloquent\Factories\Factory;

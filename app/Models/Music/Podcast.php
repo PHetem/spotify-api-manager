@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Models\Customer;
+namespace App\Models\Music;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Album extends Model
+class Podcast extends Model
 {
     use HasFactory;
 
@@ -20,9 +19,5 @@ class Album extends Model
 
     public function customer(): HasOne {
         return $this->hasOne(Customer::class, 'id', 'customerID');
-    }
-
-    public function tracks(): HasMany {
-        return $this->hasMany(Track::class, 'id', 'trackID');
     }
 }

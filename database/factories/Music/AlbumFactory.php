@@ -1,15 +1,14 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Music;
 
-use App\Models\Customer\Album;
 use App\Models\Customer\Customer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Customer\Track>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Customer\Album>
  */
-class TrackFactory extends Factory
+class AlbumFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,8 +19,8 @@ class TrackFactory extends Factory
     {
         return [
             'customerID' => Customer::all()->random()->id,
-            'albumID' => Album::all()->random()->id,
             'name' => fake()->sentence(4),
+            'coverImageURL' => fake()->imageUrl(),
             'URL' => 'https://open.spotify.com/playlist/2l71qq4FBusrAh261dMBWv?si=d52a99ea2cef472c',
         ];
     }

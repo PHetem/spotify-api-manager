@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Models\Customer;
+namespace App\Models\Music;
+
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Playlist extends Model
+class Track extends Model
 {
     use HasFactory;
 
@@ -14,10 +15,14 @@ class Playlist extends Model
         'customerID',
         'name',
         'URL',
-        'coverImageURL'
+        'albumID'
     ];
 
     public function customer(): HasOne {
         return $this->hasOne(Customer::class, 'id', 'customerID');
+    }
+
+    public function album(): HasOne {
+        return $this->hasOne(Album::class, 'id', 'albumID');
     }
 }
