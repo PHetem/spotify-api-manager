@@ -2,6 +2,10 @@
 
 namespace App\Models\Customer;
 
+use App\Models\Music\Album;
+use App\Models\Music\Playlist;
+use App\Models\Music\Podcast;
+use App\Models\Music\Track;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
