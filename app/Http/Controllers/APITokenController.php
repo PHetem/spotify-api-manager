@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Customer\APIAuth\APIAuthController;
+use App\Http\Controllers\APIAuth\UserAccessController;
 use App\Models\APIToken;
 use Illuminate\Support\Facades\Auth;
 use InvalidArgumentException;
@@ -29,7 +29,7 @@ class APITokenController extends Controller
     }
 
     public static function refreshUserAccess($userID) {
-        $tokenData = APIAuthController::getNewUserAccessToken();
+        $tokenData = UserAccessController::getToken();
 
         $token = $tokenData['access_token'];
         $expiresAt = time() + $tokenData['expires_in'];
