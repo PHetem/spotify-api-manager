@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('customerID');
             $table->string('albumID');
+            $table->string('artistID');
             $table->string('name');
             $table->string('URL');
             $table->timestamps();
