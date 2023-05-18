@@ -11,6 +11,17 @@ class Artist extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'customerID',
+        'name',
+        'profileURL',
+        'profilePictureURL'
+    ];
+
+    public static function getBaseRequestURL() {
+        return 'https://api.spotify.com/v1/artists/';
+    }
+
     public function customer(): HasOne {
         return $this->hasOne(Customer::class, 'id', 'customerID');
     }

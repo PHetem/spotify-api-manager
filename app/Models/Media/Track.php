@@ -19,6 +19,10 @@ class Track extends Model
         'albumID'
     ];
 
+    public static function getBaseRequestURL() {
+        return 'https://api.spotify.com/v1/tracks/';
+    }
+
     public function customer(): HasOne {
         return $this->hasOne(Customer::class, 'id', 'customerID');
     }

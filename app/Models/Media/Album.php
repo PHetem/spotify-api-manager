@@ -18,6 +18,10 @@ class Album extends Model
         'coverImageURL'
     ];
 
+    public static function getBaseRequestURL() {
+        return 'https://api.spotify.com/v1/albums/';
+    }
+
     public function customer(): HasOne {
         return $this->hasOne(Customer::class, 'id', 'customerID');
     }
