@@ -21,8 +21,6 @@ return new class extends Migration
             $table->string('profileURL');
             $table->string('profilePictureURL');
             $table->string('accountType');
-            $table->string('accessToken');
-            $table->string('refreshToken');
             $table->timestamps();
         });
     }

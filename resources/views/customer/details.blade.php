@@ -32,11 +32,11 @@
                     </div>
                     <div style="margin-top: 15px;">
                         <span><b>Access Token:</b></span>
-                        <span>{{ $customer->accessToken }}</span>
+                        <span>{{ $customer->accessToken->token }}</span>
                     </div>
                     <div style="margin-top: 15px;">
                         <span><b>Refresh Token:</b></span>
-                        <span>{{ $customer->refreshToken }}</span>
+                        <span>{{ $customer->refreshToken->token }}</span>
                     </div>
                 </div>
                 <div class="col-4">

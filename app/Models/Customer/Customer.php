@@ -2,13 +2,16 @@
 
 namespace App\Models\Customer;
 
-use App\Models\Music\Album;
-use App\Models\Music\Playlist;
-use App\Models\Music\Podcast;
-use App\Models\Music\Track;
+use App\Models\APIToken;
+use App\Models\Media\Album;
+use App\Models\Media\Artist;
+use App\Models\Media\Playlist;
+use App\Models\Media\Podcast;
+use App\Models\Media\Track;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Customer extends Model
 {
@@ -22,10 +25,16 @@ class Customer extends Model
         'followerCount',
         'profileURL',
         'profilePictureURL',
-        'accountType',
-        'accessToken',
-        'refreshToken',
+        'accountType'
     ];
+
+    public function refreshToken(): HasOne {
+        return $this->hasOne(APIToken::class, 'customerID', 'id')->where('a_p_i_tokens.type', 'Refresh');
+    }
+
+    public function accessToken(): HasOne {
+        return $this->hasOne(APIToken::class, 'customerID', 'id')->where('a_p_i_tokens.type', 'Access');
+    }
 
     public function playlists(): HasMany {
         return $this->hasMany(Playlist::class, 'customerID', 'id');
@@ -41,5 +50,9 @@ class Customer extends Model
 
     public function podcasts(): HasMany {
         return $this->hasMany(Podcast::class, 'customerID', 'id');
+    }
+
+    public function artists(): HasMany {
+        return $this->hasMany(Artist::class, 'customerID', 'id');
     }
 }
