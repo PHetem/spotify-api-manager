@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers\Media;
 
-use App\Models\Customer\Track;
-use App\Http\Controllers\Controller;
+use App\Models\Media\Track;
 
-class TrackController extends Controller
+class TrackController extends MediaController
 {
+    public static $model = Track::class;
+
+    public static function requestMedia($ids) {
+        return parent::requestMedia($ids);
+    }
+
     public function list($pagination = 30) {
         $tracks = Track::paginate($pagination);
 

@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Media;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Media\Artist;
 
-class ArtistController extends Controller
+class ArtistController extends MediaController
 {
-    //
+    public static $model = Artist::class;
+
+    public static function requestMedia($ids) {
+        return parent::requestMedia($ids);
+    }
 }
