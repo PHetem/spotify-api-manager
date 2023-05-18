@@ -4,6 +4,8 @@ use App\Helpers\NavigationHelper;
 use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\TestController;
+use App\Http\Middleware\APIAuthMiddleware;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\Navigate;
@@ -20,47 +22,52 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Auth::routes();
 
-Route::middleware([Authenticate::class, Navigate::class])->group(function () {
-
-    Route::controller(NavigationHelper::class)->group(function () {
-        Route::get('/back', 'back')
-            ->withoutMiddleware([Navigate::class])
-            ->name('back');
+Route::middleware([Authenticate::class])->group(function () {
+    Route::middleware([APIAuthMiddleware::class])->group(function () {
+        // Requests to Spotify API
     });
 
-    Route::controller(CustomerController::class)->group(function () {
+    Route::middleware([Navigate::class])->group(function () {
 
-        Route::get('/', 'list')
-            ->name('dashboard');
-
-        Route::get('/customers/details/{id}', 'details')
-            ->name('customers.details');
-
-        Route::get('/customers/delete/{id}', 'delete')
-            ->withoutMiddleware([Navigate::class])
-            ->name('customers.delete');
-    });
-
-    Route::middleware([IsAdmin::class])->group(function () {
-
-        Route::controller(LogController::class)->group(function () {
-            Route::get('/logs/{userID?}', 'list')
-                ->name('logs.list');
+        Route::controller(NavigationHelper::class)->group(function () {
+            Route::get('/back', 'back')
+                ->withoutMiddleware([Navigate::class])
+                ->name('back');
         });
 
-        Route::controller(UserController::class)->group(function () {
-            Route::get('/users', 'list')
-                ->name('users.list');
+        Route::controller(CustomerController::class)->group(function () {
 
-            Route::get('/users/details/{id}', 'details')
-                ->name('users.details');
+            Route::get('/', 'list')
+                ->name('dashboard');
 
-            Route::get('/users/delete/{id}', 'delete')
+            Route::get('/customers/details/{id}', 'details')
+                ->name('customers.details');
+
+            Route::get('/customers/delete/{id}', 'delete')
                 ->withoutMiddleware([Navigate::class])
-                ->name('users.delete');
+                ->name('customers.delete');
+        });
+
+        Route::middleware([IsAdmin::class])->group(function () {
+
+            Route::controller(LogController::class)->group(function () {
+                Route::get('/logs/{userID?}', 'list')
+                    ->name('logs.list');
+            });
+
+            Route::controller(UserController::class)->group(function () {
+                Route::get('/users', 'list')
+                    ->name('users.list');
+
+                Route::get('/users/details/{id}', 'details')
+                    ->name('users.details');
+
+                Route::get('/users/delete/{id}', 'delete')
+                    ->withoutMiddleware([Navigate::class])
+                    ->name('users.delete');
+            });
         });
     });
 });
