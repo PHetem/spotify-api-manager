@@ -16,9 +16,29 @@ class PlaylistController extends MediaController
         return ['playlists' => [parent::requestMedia($ids)]];
     }
 
+    public static function requestCustomerMedia($id) {
+        return ['playlists' => [parent::requestCustomerMedia($id)][0]];
+    }
+
     public function list($pagination = 30) {
         $playlists = Playlist::paginate($pagination);
 
         return $playlists;
+    }
+
+    public static function updateCustomerMedia($id) {
+        $data = self::requestCustomerMedia($id)['playlists']['items'];
+
+        parent::updateMedia($id, $data);
+    }
+
+    protected static function mapResponse($id, $data) {
+        $map['customerID'] = $id;
+        $map['spotifyID'] = $data['id'];
+        $map['name'] = $data['name'];
+        $map['coverImageURL'] = $data['images'][0]['url'] ?? null;
+        $map['URL'] = Playlist::getBaseURL() . $data['id'];
+
+        return $map;
     }
 }
