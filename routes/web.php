@@ -5,8 +5,8 @@ use App\Http\Controllers\APIAuth\CustomerAuthController;
 use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LogController;
-use App\Http\Controllers\TestController;
-use App\Http\Middleware\APIAuthMiddleware;
+use App\Http\Middleware\APICustomerAuthMiddleware;
+use App\Http\Middleware\APIUserAuthMiddleware;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\Navigate;
@@ -38,8 +38,14 @@ Route::controller(CustomerController::class)->group(function () {
 
 
 Route::middleware([Authenticate::class])->group(function () {
-    Route::middleware([APIAuthMiddleware::class])->group(function () {
+    Route::middleware([APIUserAuthMiddleware::class])->group(function () {
         // Requests to Spotify API
+        Route::middleware([APICustomerAuthMiddleware::class])->group(function () {
+            Route::controller(CustomerController::class)->group(function () {
+                Route::get('/customers/refresh/{id}', 'refresh')
+                    ->name('customers.refresh');
+            });
+        });
     });
 
     Route::middleware([Navigate::class])->group(function () {
