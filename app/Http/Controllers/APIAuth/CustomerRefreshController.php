@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Auth\APIAuth;
+namespace App\Http\Controllers\APIAuth;
 
-use InvalidArgumentException;
-
-class CustomerAccessController extends APIAuthController
+class CustomerRefreshController extends APIAuthController
 {
     protected static function getRequestType() {
         return 'POST';
@@ -15,14 +13,11 @@ class CustomerAccessController extends APIAuthController
     }
 
     protected static function getURL() {
-        return 'https://accounts.spotify.com/api/token';
+        return 'https://accounts.spotify.com/api/refresh_token';
     }
 
     protected static function getData($externalData = null) {
-        if (!isset($externalData['code']))
-            throw new InvalidArgumentException('code not provided');
-
-        return ['grant_type' => 'authorization_code', 'code' => $externalData['code'], 'redirect_uri' => env('SPOTIFY_REDIRECT_URI')];
+        return ['grant_type' => 'refresh_token', 'refresh_token' => 'TODO'];
     }
 
     private static function getAuth() {
