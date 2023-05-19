@@ -9,7 +9,7 @@ use InvalidArgumentException;
 
 class APITokenController extends Controller
 {
-    public static function get($id, $userType, $tokenType) {
+    private static function get($id, $userType, $tokenType) {
         if (!in_array($userType, ['User', 'Customer']))
             throw new InvalidArgumentException('User type has to be User or Customer');
 
@@ -20,7 +20,7 @@ class APITokenController extends Controller
         return $token->expiresAt > time() - 10;
     }
 
-    public static function updateOrCreate($data) {
+    private static function updateOrCreate($data) {
         APIToken::updateOrCreate([
             'type' => $data['type'],
             'customerID' => $data['customerID'] ?? '0',
@@ -28,15 +28,10 @@ class APITokenController extends Controller
         ], $data);
     }
 
-    public static function refreshUserAccess($userID) {
+    public static function refreshUserAccess() {
         $tokenData = UserAccessController::getToken();
 
-        $token = $tokenData['access_token'];
-        $expiresAt = time() + $tokenData['expires_in'];
-
-        $data = ['userID' => $userID, 'token' => $token, 'expiresAt' => $expiresAt, 'type' => 'Access'];
-
-        self::updateOrCreate($data);
+        self::saveUserAccess($tokenData['access_token'], $tokenData['expires_in']);
     }
 
     public static function getUserAccess() {
@@ -49,5 +44,34 @@ class APITokenController extends Controller
 
     public static function getCustomerRefresh($id) {
         return self::get($id, 'Customer', 'Refresh');
+    }
+
+    public static function saveUserAccess($token, $expiresIn) {
+        $data = [
+            'type' => 'Access',
+            'token' => $token,
+            'userID' => Auth::user()->id,
+            'expiresAt' => time() + $expiresIn
+        ];
+        return self::updateOrCreate($data);
+    }
+
+    public static function saveCustomerAccess($id, $token, $expiresIn) {
+        $data = [
+            'type' => 'Access',
+            'token' => $token,
+            'customerID' => $id,
+            'expiresAt' => time() + $expiresIn
+        ];
+        return self::updateOrCreate($data);
+    }
+
+    public static function saveCustomerRefresh($id, $token, $expiresIn) {
+        $data = [
+            'type' => 'Refresh',
+            'token' => $token,
+            'customerID' => $id
+        ];
+        return self::updateOrCreate($data);
     }
 }
