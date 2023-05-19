@@ -1,0 +1,18 @@
+@extends('customer.card_template')
+@section('title'){{ $title }}@overwrite
+
+@section('card_content')
+    @foreach ($data as $item)
+        @php
+            $itemName = strlen($item->name) > 23 ? substr($item->name, 0, 20) . '...' : $item->name;
+        @endphp
+        <a href="{{ $item->URL }}" target="_blank" class="linkdiv col-4 mt-3 ">
+            <div>
+                <img width="100" height="100" class="border rounded" src="{{ asset($item->imageURL) }}">
+            </div>
+            <div>
+                <span><b>{{ $itemName }}</b></span>
+            </div>
+        </a>
+    @endforeach
+@overwrite
