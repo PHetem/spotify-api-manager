@@ -26,8 +26,8 @@ class ArtistController extends MediaController
         $map['customerID'] = $id;
         $map['spotifyID'] = $data['id'];
         $map['name'] = $data['name'];
-        $map['profilePictureURL'] = $data['images'][0]['url'] ?? null;
-        $map['profileURL'] = Artist::getBaseURL() . $data['id'];
+        $map['imageURL'] = $data['images'][0]['url'] ?? null;
+        $map['URL'] = Artist::getBaseURL() . $data['id'];
 
         return $map;
     }

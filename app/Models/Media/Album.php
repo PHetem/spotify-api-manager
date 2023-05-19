@@ -16,7 +16,7 @@ class Album extends Model
         'customerID',
         'name',
         'URL',
-        'coverImageURL'
+        'imageURL'
     ];
 
     public static function getBaseURL() {

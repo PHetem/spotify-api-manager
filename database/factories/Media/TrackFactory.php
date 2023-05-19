@@ -22,6 +22,7 @@ class TrackFactory extends Factory
             'spotifyID' => Str::random(10),
             'customerID' => Customer::all()->random()->id,
             'name' => fake()->sentence(4),
+            'imageURL' => fake()->imageUrl(),
             'URL' => 'https://open.spotify.com/playlist/2l71qq4FBusrAh261dMBWv?si=d52a99ea2cef472c',
         ];
     }

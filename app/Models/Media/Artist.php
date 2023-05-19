@@ -4,7 +4,6 @@ namespace App\Models\Media;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Artist extends Model
@@ -15,8 +14,8 @@ class Artist extends Model
         'spotifyID',
         'customerID',
         'name',
-        'profileURL',
-        'profilePictureURL'
+        'URL',
+        'imageURL'
     ];
 
     public static function getBaseURL() {

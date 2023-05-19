@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('spotifyID');
             $table->string('customerID');
             $table->string('name');
-            $table->string('profileURL');
-            $table->string('profilePictureURL')->nullable();
+            $table->string('imageURL')->nullable();
+            $table->string('URL');
             $table->timestamps();
         });
     }

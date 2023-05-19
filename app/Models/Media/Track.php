@@ -2,10 +2,8 @@
 
 namespace App\Models\Media;
 
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Track extends Model
@@ -15,9 +13,9 @@ class Track extends Model
     protected $fillable = [
         'spotifyID',
         'customerID',
-        'coverImageURL',
         'name',
         'URL',
+        'imageURL'
     ];
 
     public static function getBaseURL() {

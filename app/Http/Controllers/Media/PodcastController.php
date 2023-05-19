@@ -34,7 +34,7 @@ class PodcastController extends MediaController
         $map['customerID'] = $id;
         $map['spotifyID'] = $data['id'];
         $map['name'] = $data['name'];
-        $map['coverImageURL'] = $data['images'][0]['url'] ?? null;
+        $map['imageURL'] = $data['images'][0]['url'] ?? null;
         $map['URL'] = Podcast::getBaseURL() . $data['id'];
 
         return $map;
