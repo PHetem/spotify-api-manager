@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\APIAuth\CustomerRefreshController;
 use App\Http\Controllers\APIAuth\UserAccessController;
 use App\Models\APIToken;
 use Illuminate\Support\Facades\Auth;
@@ -32,6 +33,13 @@ class APITokenController extends Controller
         $tokenData = UserAccessController::getToken();
 
         self::saveUserAccess($tokenData['access_token'], $tokenData['expires_in']);
+    }
+
+    public static function refreshCustomerAccess($id) {
+        $refreshToken = self::getCustomerRefresh($id);
+        $tokenData = CustomerRefreshController::getToken(['refreshToken' => $refreshToken]);
+
+        self::saveCustomerAccess($id, $tokenData['access_token'], $tokenData['expires_in']);
     }
 
     public static function getUserAccess() {
@@ -66,7 +74,7 @@ class APITokenController extends Controller
         return self::updateOrCreate($data);
     }
 
-    public static function saveCustomerRefresh($id, $token, $expiresIn) {
+    public static function saveCustomerRefresh($id, $token) {
         $data = [
             'type' => 'Refresh',
             'token' => $token,
