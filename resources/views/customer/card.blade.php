@@ -1,4 +1,4 @@
-@extends('customer.card_template')
+@extends('layouts.card')
 @section('title'){{ $title }}@overwrite
 
 @section('card_content')
