@@ -5,10 +5,9 @@ namespace App\Http\Middleware;
 use App\Http\Controllers\APITokenController;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class APIAuthMiddleware
+class APICustomerAuthMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,10 +16,11 @@ class APIAuthMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $token = APITokenController::getUserAccess();
+        $id = $request->route('id');
+        $token = APITokenController::getCustomerAccess($id);
 
         if (!APITokenController::isValid($token))
-            APITokenController::refreshUserAccess();
+            APITokenController::refreshCustomerAccess($id);
 
         return $next($request);
     }
