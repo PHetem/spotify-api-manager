@@ -5,6 +5,7 @@ use App\Http\Controllers\APIAuth\CustomerAuthController;
 use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\TestController;
 use App\Http\Middleware\APICustomerAuthMiddleware;
 use App\Http\Middleware\APIUserAuthMiddleware;
 use App\Http\Middleware\Authenticate;
@@ -38,6 +39,12 @@ Route::controller(CustomerController::class)->group(function () {
 
 
 Route::middleware([Authenticate::class])->group(function () {
+
+    Route::controller(NavigationHelper::class)->group(function () {
+        Route::get('/back', 'back')
+            ->name('back');
+    });
+
     Route::middleware([APIUserAuthMiddleware::class])->group(function () {
         // Requests to Spotify API
         Route::middleware([APICustomerAuthMiddleware::class])->group(function () {
@@ -49,13 +56,6 @@ Route::middleware([Authenticate::class])->group(function () {
     });
 
     Route::middleware([Navigate::class])->group(function () {
-
-        Route::controller(NavigationHelper::class)->group(function () {
-            Route::get('/back', 'back')
-                ->withoutMiddleware([Navigate::class])
-                ->name('back');
-        });
-
         Route::controller(CustomerController::class)->group(function () {
 
             Route::get('/', 'list')

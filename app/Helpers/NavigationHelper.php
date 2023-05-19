@@ -7,8 +7,12 @@ use Illuminate\Support\Facades\Route;
 class NavigationHelper {
 
     public static function forward($parameters = null) {
-        $history = self::getHistory();
         $current = self::getCurrent($parameters);
+
+        if ($current['route'] == self::getBaseRoute())
+            self::clearHistory();
+
+        $history = self::getHistory();
 
         if (last($history) != $current)
             self::addToHistory($history, $current);
@@ -18,7 +22,7 @@ class NavigationHelper {
         self::removeLastHistoryElement();
         $history = self::getPrevious();
 
-        $route = $history['route'] ?? 'dashboard';
+        $route = $history['route'] ?? self::getBaseRoute();
         $parameters = $history['parameters'] ?? [];
 
         return redirect()->route($route, $parameters);
@@ -40,7 +44,7 @@ class NavigationHelper {
         session(['history' => $history]);
     }
 
-    private static function getHistory() {
+    public static function getHistory() {
         return session()->has('history') ? session('history') : [];
     }
 
@@ -50,5 +54,12 @@ class NavigationHelper {
         return $current;
     }
 
+    public static function clearHistory() {
+        session(['history' => []]);
+    }
+
+    private static function getBaseRoute() {
+        return 'dashboard';
+    }
 }
 
