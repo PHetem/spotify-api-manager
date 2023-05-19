@@ -17,10 +17,10 @@ class APIAuthMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $token = APITokenController::get(Auth::user()->id, 'User', 'Access');
+        $token = APITokenController::getUserAccess();
 
         if (!APITokenController::isValid($token))
-            APITokenController::refreshUserAccess(Auth::user()->id);
+            APITokenController::refreshUserAccess();
 
         return $next($request);
     }
