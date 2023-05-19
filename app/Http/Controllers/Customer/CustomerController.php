@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Customer;
 
-use App\Http\Controllers\APITokenController;
 use App\Http\Controllers\APIAuth\CustomerAccessController;
 use App\Http\Controllers\APIAuth\CustomerAuthController;
+use App\Http\Controllers\APITokenController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\Media\AlbumController;
@@ -21,8 +21,8 @@ class CustomerController extends Controller
     public function create(Request $request) {
         $response = $request->all();
 
-        if (isset($response['error']))
-            throw new Exception($response['error']);
+        if (isset($response['error']) || !isset($response['code']))
+            throw new Exception('Something went wrong');
 
         $tokens = CustomerAccessController::getToken($response);
         $user = Customer::requestCustomerData($tokens['access_token']);
@@ -31,6 +31,7 @@ class CustomerController extends Controller
 
         $customer = Customer::updateOrCreate(['spotifyID' => $customer['spotifyID']], $customer);
 
+        LogController::store('Customer Added: ' . $customer->id);
         self::updateCustomerContent($customer->id, $tokens);
     }
 
