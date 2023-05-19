@@ -1,6 +1,7 @@
 <?php
 
 use App\Helpers\NavigationHelper;
+use App\Http\Controllers\APIAuth\CustomerAuthController;
 use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LogController;
@@ -23,6 +24,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Auth::routes();
+
+
+Route::controller(CustomerAuthController::class)->group(function () {
+    Route::get('/authorize', 'getToken')
+            ->name('customer.auth');
+});
+
+Route::controller(CustomerController::class)->group(function () {
+    Route::get('/customer/auth', 'create')
+            ->name('customers.create');
+});
+
 
 Route::middleware([Authenticate::class])->group(function () {
     Route::middleware([APIAuthMiddleware::class])->group(function () {
