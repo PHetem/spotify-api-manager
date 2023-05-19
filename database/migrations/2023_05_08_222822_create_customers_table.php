@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('country');
             $table->string('followerCount');
             $table->string('profileURL');
-            $table->string('profilePictureURL');
+            $table->string('profilePictureURL')->nullable();
             $table->string('accountType');
             $table->timestamps();
         });

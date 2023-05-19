@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('token');
             $table->string('customerID')->default('0');
             $table->string('userID')->default('0');
-            $table->string('expiresAt');
+            $table->string('expiresAt')->nullable();
             $table->timestamps();
 
             $table->unique(['type', 'userID', 'customerID']);

@@ -11,7 +11,7 @@
                     @endphp
                     <a href="{{ $track->URL }}" class="linkdiv col-6 mt-3 ">
                         <div>
-                            <img width="100" height="100" class="border rounded" src="{{ asset($track->album->coverImageURL) }}">
+                            <img width="100" height="100" class="border rounded" src="{{ asset($track->coverImageURL) }}">
                         </div>
                         <div>
                             <span><b>{{ $trackName }}</b></span>

@@ -13,25 +13,26 @@ class Track extends Model
     use HasFactory;
 
     protected $fillable = [
+        'spotifyID',
         'customerID',
+        'coverImageURL',
         'name',
         'URL',
-        'albumID'
     ];
+
+    public static function getBaseURL() {
+        return 'https://open.spotify.com/track/';
+    }
 
     public static function getBaseRequestURL() {
         return 'https://api.spotify.com/v1/tracks/';
     }
 
+    public static function getCustomerRequestURL() {
+        return 'https://api.spotify.com/v1/me/tracks/';
+    }
+
     public function customer(): HasOne {
         return $this->hasOne(Customer::class, 'id', 'customerID');
-    }
-
-    public function album(): HasOne {
-        return $this->hasOne(Album::class, 'id', 'albumID');
-    }
-
-    public function artist(): HasOne {
-        return $this->hasOne(Artist::class, 'id', 'artistID');
     }
 }

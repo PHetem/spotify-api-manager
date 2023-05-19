@@ -10,6 +10,9 @@
                 @include('customer.playlists.list')
             </div>
             <div class="col-4" style="margin-top: 80px">
+                @include('customer.artists.list')
+            </div>
+            <div class="col-4" style="margin-top: 80px">
                 @include('customer.podcasts.list')
             </div>
             <div class="col-4" style="margin-top: 80px">

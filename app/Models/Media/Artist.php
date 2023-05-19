@@ -12,25 +12,26 @@ class Artist extends Model
     use HasFactory;
 
     protected $fillable = [
+        'spotifyID',
         'customerID',
         'name',
         'profileURL',
         'profilePictureURL'
     ];
 
+    public static function getBaseURL() {
+        return 'https://open.spotify.com/artist/';
+    }
+
     public static function getBaseRequestURL() {
         return 'https://api.spotify.com/v1/artists/';
     }
 
+    public static function getCustomerRequestURL() {
+        return 'https://api.spotify.com/v1/me/following/';
+    }
+
     public function customer(): HasOne {
         return $this->hasOne(Customer::class, 'id', 'customerID');
-    }
-
-    public function albums(): HasMany {
-        return $this->hasMany(Album::class, 'id', 'albumID');
-    }
-
-    public function tracks(): HasMany {
-        return $this->hasMany(Track::class, 'id', 'trackID');
     }
 }

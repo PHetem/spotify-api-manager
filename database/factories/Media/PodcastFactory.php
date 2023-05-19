@@ -4,6 +4,7 @@ namespace Database\Factories\Media;
 
 use App\Models\Customer\Customer;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Customer\Podcast>
@@ -18,6 +19,7 @@ class PodcastFactory extends Factory
     public function definition(): array
     {
         return [
+            'spotifyID' => Str::random(10),
             'customerID' => Customer::all()->random()->id,
             'name' => fake()->sentence(4),
             'coverImageURL' => fake()->imageUrl(),

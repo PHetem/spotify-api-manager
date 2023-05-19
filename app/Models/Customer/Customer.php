@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\Http;
 
 class Customer extends Model
 {
@@ -27,6 +28,14 @@ class Customer extends Model
         'profilePictureURL',
         'accountType'
     ];
+
+    public static function requestCustomerData($accessToken) {
+        return Http::withToken($accessToken)->get(self::getBaseRequestURL())->json();
+    }
+
+    public static function getBaseRequestURL() {
+        return 'https://api.spotify.com/v1/me/';
+    }
 
     public function refreshToken(): HasOne {
         return $this->hasOne(APIToken::class, 'customerID', 'id')->where('a_p_i_tokens.type', 'Refresh');

@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('artists', function (Blueprint $table) {
             $table->id();
+            $table->string('spotifyID');
             $table->string('customerID');
             $table->string('name');
             $table->string('profileURL');
-            $table->string('profilePictureURL');
+            $table->string('profilePictureURL')->nullable();
             $table->timestamps();
         });
     }
