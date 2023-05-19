@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\APIAuth;
+namespace App\Http\Controllers\Auth\APIAuth;
 
 class UserAccessController extends APIAuthController
 {
@@ -8,7 +8,7 @@ class UserAccessController extends APIAuthController
         return 'POST';
     }
     protected static function getHeaders() {
-        return ['Content-Type: application/x-www-form-urlencoded'];
+        return ['Content-Type' => 'application/x-www-form-urlencoded'];
     }
 
     protected static function getURL() {
