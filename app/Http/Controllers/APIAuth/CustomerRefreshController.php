@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\APIAuth;
 
+use InvalidArgumentException;
+
 class CustomerRefreshController extends APIAuthController
 {
     protected static function getRequestType() {
@@ -13,11 +15,14 @@ class CustomerRefreshController extends APIAuthController
     }
 
     protected static function getURL() {
-        return 'https://accounts.spotify.com/api/refresh_token';
+        return 'https://accounts.spotify.com/api/token';
     }
 
     protected static function getData($externalData = null) {
-        return ['grant_type' => 'refresh_token', 'refresh_token' => 'TODO'];
+        if (!isset($externalData['refreshToken']))
+            throw new InvalidArgumentException('Refresh Token not provided');
+
+        return ['grant_type' => 'refresh_token', 'refresh_token' => $externalData['refreshToken']['token']];
     }
 
     private static function getAuth() {

@@ -12,6 +12,7 @@ use App\Http\Controllers\Media\ArtistController;
 use App\Http\Controllers\Media\PlaylistController;
 use App\Http\Controllers\Media\PodcastController;
 use App\Http\Controllers\Media\TrackController;
+use App\Models\APIToken;
 use App\Models\Customer\Customer;
 use Exception;
 use Illuminate\Http\Request;
@@ -35,8 +36,10 @@ class CustomerController extends Controller
         self::updateCustomerContent($customer->id, $tokens);
     }
 
-    public function store() {
-        CustomerAuthController::getToken();
+    public function refresh($id) {
+        self::updateCustomerMedia($id);
+
+        return self::details($id);
     }
 
     public function list($pagination = 30) {
@@ -80,7 +83,7 @@ class CustomerController extends Controller
 
     private static function updateCustomerTokens($id, $tokens) {
         APITokenController::saveCustomerAccess($id, $tokens['access_token'], $tokens['expires_in']);
-        APITokenController::saveCustomerRefresh($id, $tokens['refresh_token'], $tokens['expires_in']);
+        APITokenController::saveCustomerRefresh($id, $tokens['refresh_token']);
     }
 
     private static function updateCustomerMedia($id) {
