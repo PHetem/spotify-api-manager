@@ -5,6 +5,7 @@ use App\Http\Controllers\APIAuth\CustomerAuthController;
 use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\Playback\PlaybackController;
 use App\Http\Controllers\TestController;
 use App\Http\Middleware\APICustomerAuthMiddleware;
 use App\Http\Middleware\APIUserAuthMiddleware;
@@ -51,6 +52,20 @@ Route::middleware([Authenticate::class])->group(function () {
             Route::controller(CustomerController::class)->group(function () {
                 Route::get('/customers/refresh/{id}', 'refresh')
                     ->name('customers.refresh');
+            });
+
+            Route::controller(PlaybackController::class)->group(function () {
+                Route::get('/customers/details/{id}/playback', 'get')
+                    ->name('customers.details.playback');
+
+                Route::get('/customers/details/{id}/playback/previous', 'previousTrack')
+                    ->name('customers.details.playback.previous');
+
+                Route::get('/customers/details/{id}/playback/next', 'nextTrack')
+                    ->name('customers.details.playback.next');
+
+                Route::get('/customers/details/{id}/playback/switch', 'switchState')
+                    ->name('customers.details.playback.switch');
             });
         });
     });
