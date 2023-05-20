@@ -3,14 +3,7 @@
 <div style="margin-top: 100px;">
     <div class="container">
         <div class="row" style="height: 150px">
-            <div class="col-10">
-                <img style="width:-webkit-fill-available; margin-bottom:25px;" class="border rounded" src="{{ asset('img/mock_player.jpg') }}">
-            </div>
-            <div class="col-2">
-                <a href="{{ route('customers.refresh', $customer->id) }}" style="display: block; text-align: center;">
-                    <img style="width:75px; height:75px; margin-top: 50px; margin-bottom: 25px;" src="{{ asset('img/refresh.png') }}">
-                </a>
-            </div>
+            @include('customer.player')
         </div>
         <div class="row" style="height: 330px">
             <div class="col-7">
