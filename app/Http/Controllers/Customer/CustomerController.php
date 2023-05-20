@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\APIAuth\CustomerAccessController;
-use App\Http\Controllers\APIAuth\CustomerAuthController;
 use App\Http\Controllers\APITokenController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\LogController;
@@ -12,7 +11,7 @@ use App\Http\Controllers\Media\ArtistController;
 use App\Http\Controllers\Media\PlaylistController;
 use App\Http\Controllers\Media\PodcastController;
 use App\Http\Controllers\Media\TrackController;
-use App\Models\APIToken;
+use App\Http\Controllers\Playback\PlaybackController;
 use App\Models\Customer\Customer;
 use Exception;
 use Illuminate\Http\Request;
@@ -48,12 +47,14 @@ class CustomerController extends Controller
         return view('dashboard', compact('customers'));
     }
 
-    public function details($id) {
+    public static function details($id) {
         $customer = Customer::with('playlists', 'albums', 'podcasts', 'tracks', 'refreshToken', 'accessToken')
                             ->find($id);
 
+        $playback = PlaybackController::get($id);
+
         LogController::store('Customer Viewed: ' . $id);
-        return view('customer.view', compact('customer'));
+        return view('customer.view', compact('customer', 'playback'));
     }
 
     public function delete($id) {
