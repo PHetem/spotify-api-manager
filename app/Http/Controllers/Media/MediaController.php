@@ -40,6 +40,8 @@ abstract class MediaController extends Controller
     protected static function updateMedia($id, $data) {
         $model = static::$model;
 
+        $model::where('customerID', $id)->delete();
+
         foreach ($data as $item) {
             $map = static::mapResponse($id, $item);
             $model::updateOrCreate(['spotifyID' => $map['spotifyID']], $map);
