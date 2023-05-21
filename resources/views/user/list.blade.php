@@ -1,15 +1,18 @@
 @extends('layouts.app')
 @section('content')
-<div style="text-align: center; vertical-align: middle; margin-top: 50px;">
+<div class="table-pos">
     <div style="margin-top: 100px;">
+        <div>
+            <a class="btn btn-success" style="margin:40px;" href="{{ route('register') }}">Add New</a>
+        </div>
         @if ($users->isEmpty())
-            <span style="font-weight: bold; font-size: 2em;">No Users found</span>
-            <p>Authorized users will show up here</p>
+            <span class="main-title">No Users found</span>
+            <p><span class="sub-title">Authorized users will show up here</span></p>
         @else
-            <div style="margin-bottom: 25px;">
-                <span style="font-weight: bold; font-size: 2em;">Users</span>
+            <div class="table-title">
+                <span class="main-title">Users</span>
             </div>
-            <table class="table table-striped" style="width: 50%; display: inline-table; margin-bottom: 3rem;">
+            <table class="table table-striped table-half">
                 <tr>
                     <td style="width:15%"><b>ID</b></td>
                     <td style="width:55%"><b>User</b></td>
@@ -19,11 +22,13 @@
                 @foreach ($users as $user)
                     <tr>
                         <td><b>{{ $user->id }}</b></td>
-                        <td><a href="{{ route('users.details', $user->id) }}"><b>{{ $user->name }}</b><a></td>
+                        <td>
+                            <a href="{{ route('users.details', $user->id) }}"><b>{{ $user->name }}</b></a>
+                        </td>
                         <td><b>{{ $user->isAdmin ? 'Y' : 'N' }}</b></td>
                         <td>
                             <a href="{{ route('users.delete', $user->id) }}" onclick="return confirm('Are you sure?')" style="display: block; text-align: center;">
-                                <img style="width:25px; height:25px; border:0" src="{{ asset('img/delete.ico') }}">
+                                <img class="icon" src="{{ asset('img/delete.ico') }}">
                             </a>
                         </td>
                     </tr>

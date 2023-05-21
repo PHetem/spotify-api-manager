@@ -3,7 +3,7 @@
 
 @section('card_content')
     @if ($data->isEmpty())
-        <span style="font-weight: bold; font-size: 1em;">User Has No {{ $title }} Available</span>
+        <span class="sub-title">User Has No {{ $title }} Available</span>
     @else
         @foreach ($data as $item)
             @php

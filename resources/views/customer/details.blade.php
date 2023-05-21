@@ -9,31 +9,31 @@
             <span><b>User ID:</b></span>
             <span>{{ $data->id }}</span>
         </div>
-        <div style="margin-top: 15px;">
+        <div class="content-line">
             <span><b>Spotify ID:</b></span>
             <span>{{ $data->spotifyID }}</span>
         </div>
-        <div style="margin-top: 15px;">
+        <div class="content-line">
             <span><b>Name:</b></span>
             <span>{{ $data->name }}</span>
         </div>
-        <div style="margin-top: 15px;">
+        <div class="content-line">
             <span><b>Email:</b></span>
             <span>{{ $data->email }}</span>
         </div>
-        <div style="margin-top: 15px;">
+        <div class="content-line">
             <span><b>Country:</b></span>
             <span>{{ $data->country }}</span>
         </div>
-        <div style="margin-top: 15px;">
+        <div class="content-line">
             <span><b>Profile:</b></span>
             <a href="{{ $data->profileURL }}" target="_blank">Click here</a>
         </div>
-        <div style="margin-top: 15px;">
+        <div class="content-line">
             <span><b>Access Token:</b></span>
             <span>{{ $data->accessToken->token }}</span>
         </div>
-        <div style="margin-top: 15px;">
+        <div class="content-line">
             <span><b>Refresh Token:</b></span>
             <span>{{ $data->refreshToken->token }}</span>
         </div>
@@ -42,10 +42,10 @@
         <div>
             <img width="200" class="border rounded" src="{{ asset($data->profilePictureURL) }}">
         </div>
-        <div style="margin-top: 15px;">
+        <div class="content-line">
             <span><b>{{ $data->followerCount }} Followers</b></span>
         </div>
-        <div style="margin-top: 15px;">
+        <div class="content-line">
             <span><b>{{ $data->accountType }} User</b></span>
         </div>
     </div>

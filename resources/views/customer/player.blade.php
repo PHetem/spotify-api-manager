@@ -2,43 +2,43 @@
     $playbackStateButton = $playback['state'] ? 'img/player/pause.png' : 'img/player/play.png';
 @endphp
 
-<div style="height: 100%; background-color: #2D2D2D;" class="border rounded row">
-    <div class="col-2" style="display:flex;">
+<div class="border rounded row player-bg">
+    <div class="col-2 center-img">
         @if (!is_null($playback['track']))
-            <a href="{{ $playback['track']->URL }}" target="_blank" style="width:70px; margin: auto; display: block;" >
-                <img src="{{ $playback['track']->imageURL }}" style="width:110px; height:110px; border-radius:.4rem">
+            <a href="{{ $playback['track']->URL }}" target="_blank" class="center-img" style="width:70px;" >
+                <img src="{{ $playback['track']->imageURL }}" class="player-cover">
             </a>
         @endif
     </div>
     <div class="col-8">
         <div style="display: grid;">
             <div class="wrapper" style="margin: 0 auto;">
-                <div style="width:100px; height: 100px; float:left; display:flex;">
-                    <a href="{{ route('customers.details.playback.previous', $customer->id) }}" style="width:70px; margin: auto; display: block;" >
-                        <img src="{{ asset('img/player/previous.png') }}" style="width:70px; height:70px;">
+                <div class="player-bt center-img">
+                    <a href="{{ route('customers.details.playback.previous', $customer->id) }}" class="center-img">
+                        <img src="{{ asset('img/player/previous.png') }}" class="player-bt">
                     </a>
                 </div>
-                <div style="width:100px; height: 100px; float:left; display:flex;">
-                    <a href="{{ route('customers.details.playback.switch', $customer->id) }}" style="width:70px; margin: auto; display: block;" >
-                        <img src="{{ asset($playbackStateButton) }}" style="width:70px; height:70px;">
+                <div class="player-bt center-img">
+                    <a href="{{ route('customers.details.playback.switch', $customer->id) }}" class="center-img">
+                        <img src="{{ asset($playbackStateButton) }}" class="player-bt">
                     </a>
                 </div>
-                <div style="width:100px; height: 100px; float:left; display:flex;">
-                    <a href="{{ route('customers.details.playback.next', $customer->id) }}" style="width:70px; margin: auto; display: block;" >
-                        <img src="{{ asset('img/player/next.png') }}" style="width:70px; height:70px;">
+                <div class="player-bt center-img">
+                    <a href="{{ route('customers.details.playback.next', $customer->id) }}" class="center-img">
+                        <img src="{{ asset('img/player/next.png') }}" class="player-bt">
                     </a>
                 </div>
             </div>
-            <div style="width:700px; height: 30px; margin-bottom:25px; text-align: center; margin: auto;" class="border rounded">
+            <div class="border rounded player-track">
                 @if (!is_null($playback['track']))
                     <span style="color: aliceblue;">{{ $playback['track']->name }}</span>
                 @endif
             </div>
         </div>
     </div>
-    <div class="col-2" style="display:flex;">
-        <a href="{{ route('customers.refresh', $customer->id) }}" style="width:70px; margin: auto; display: block;" >
-            <img src="{{ asset('img/player/refresh.png') }}" style="width:70px;">
+    <div class="col-2 center-img">
+        <a href="{{ route('customers.refresh', $customer->id) }}" class="center-img">
+            <img src="{{ asset('img/player/refresh.png') }}" class="player-bt">
         </a>
     </div>
 </div>

@@ -1,5 +1,5 @@
 <div class="row">
-    <span class="cardTitle">@yield('title')</span>
+    <span class="card-title">@yield('title')</span>
 </div>
 <div class="card h-100" style="overflow: auto">
     <div class="card-body">

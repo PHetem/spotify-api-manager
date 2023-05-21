@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
-                <a class="navbar-brand" href="{{ route('dashboard') }}">{{ config('app.name', 'Laravel') }}</a>
+                <a class="navbar-brand" href="{{ route('dashboard') }}">{{ config('app.name') }}</a>
                 @guest
 
                 @else
@@ -27,12 +27,6 @@
                     @if (Request::segment(1) != 'login' && Route::has('login'))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                    @endif
-
-                    @if (Request::segment(1) != 'register' && Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                     @endif
                 @else
