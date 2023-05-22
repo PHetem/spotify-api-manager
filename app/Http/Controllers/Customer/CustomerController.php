@@ -38,7 +38,7 @@ class CustomerController extends Controller
     public function refresh($id) {
         self::updateCustomerMedia($id);
 
-        return self::details($id);
+        return redirect()->route('customers.details', $id);
     }
 
     public function list($pagination = 30) {

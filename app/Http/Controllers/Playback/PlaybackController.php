@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Playback;
 
 use App\Http\Controllers\APITokenController;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Customer\CustomerController;
 use App\Models\Media\Podcast;
 use App\Models\Media\Track;
 use Exception;
@@ -75,7 +74,7 @@ class PlaybackController extends Controller
 
         Http::withToken($token)->withHeaders($headers)->put($url, $data);
 
-        return CustomerController::details($id);
+        return redirect()->route('customers.details', $id);
     }
 
     public static function nextTrack($id) {
@@ -84,7 +83,7 @@ class PlaybackController extends Controller
 
         Http::withToken($token)->post($url);
 
-        return CustomerController::details($id);
+        return redirect()->route('customers.details', $id);
     }
 
     public static function previousTrack($id) {
@@ -93,7 +92,7 @@ class PlaybackController extends Controller
 
         Http::withToken($token)->post($url);
 
-        return CustomerController::details($id);
+        return redirect()->route('customers.details', $id);
     }
 
     public static function getDevices($id) {
