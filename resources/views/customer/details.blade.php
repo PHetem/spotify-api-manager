@@ -31,11 +31,11 @@
         </div>
         <div class="content-line">
             <span><b>Access Token:</b></span>
-            <span>{{ $data->accessToken->token }}</span>
+            <button class="btn btn-success" onclick="copyToClipboard('{{ $data->accessToken->token }}')">Copy access token to clipboard</button>
         </div>
         <div class="content-line">
             <span><b>Refresh Token:</b></span>
-            <span>{{ $data->refreshToken->token }}</span>
+            <button class="btn btn-success" onclick="copyToClipboard('{{ $data->refreshToken->token }}')">Copy refresh token to clipboard</button>
         </div>
     </div>
     <div class="col-4">
@@ -49,4 +49,11 @@
             <span><b>{{ $data->accountType }} User</b></span>
         </div>
     </div>
+    <script>
+        const copyToClipboard = str => {
+            if (navigator && navigator.clipboard && navigator.clipboard.writeText)
+                return navigator.clipboard.writeText(str);
+            return Promise.reject('The Clipboard API is not available.');
+        };
+    </script>
 @overwrite
