@@ -34,20 +34,21 @@ class PlaybackController extends Controller
         $trackType = $response['currently_playing_type'];
         $trackData = $response['item'];
 
+        $item = [];
+
         if ($trackType == 'track') {
             $item = new Track();
             $item->name = $trackData['name'] . ' - ' . $trackData['artists'][0]['name'];
-            $item->URL = Track::getBaseURL() . $trackData['id'];
             $item->imageURL = $trackData['album']['images'][0]['url'] ?? null;
         } elseif ($trackType == 'episode') {
             $item = new Podcast();
             $item->name = $trackData['name'] . ' - ' . $trackData['show']['name'];
-            $item->URL = Podcast::getBaseURL() . $trackData['id'];
             $item->imageURL = $trackData['images'][0]['url'] ?? null;
         } else {
             return null;
         }
 
+        $item->URL = $item::getBaseURL() . $trackData['id'];
         $item->spotifyID = $trackData['id'];
 
         return $item;
