@@ -2,7 +2,7 @@
 @section('content')
 <div style="margin-top: 100px;">
     <div class="container">
-        <div class="row" style="height: 150px">
+        <div style="height: 150px; margin-bottom:30px;">
             @include('customer.player')
         </div>
         <div class="row" style="height: 330px">
