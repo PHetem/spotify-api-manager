@@ -64,8 +64,14 @@ Route::middleware([Authenticate::class])->group(function () {
                 Route::get('/customers/details/{id}/playback/next', 'nextTrack')
                     ->name('customers.details.playback.next');
 
-                Route::get('/customers/details/{id}/playback/switch', 'switchState')
-                    ->name('customers.details.playback.switch');
+                Route::get('/customers/details/{id}/playback/switch/play/{state}', 'switchPlayingState')
+                    ->name('customers.details.playback.switch.play');
+
+                Route::get('/customers/details/{id}/playback/switch/shuffle/{state}', 'switchShuffleState')
+                    ->name('customers.details.playback.switch.shuffle');
+
+                Route::get('/customers/details/{id}/playback/switch/repeat/{state}', 'switchRepeatState')
+                    ->name('customers.details.playback.switch.repeat');
             });
         });
     });
@@ -76,8 +82,10 @@ Route::middleware([Authenticate::class])->group(function () {
             Route::get('/', 'list')
                 ->name('dashboard');
 
-            Route::get('/customers/details/{id}', 'details')
-                ->name('customers.details');
+            Route::middleware([APICustomerAuthMiddleware::class])->group(function () {
+                Route::get('/customers/details/{id}', 'details')
+                    ->name('customers.details');
+            });
 
             Route::get('/customers/delete/{id}', 'delete')
                 ->withoutMiddleware([Navigate::class])
