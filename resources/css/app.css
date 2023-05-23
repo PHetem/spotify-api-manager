@@ -73,10 +73,20 @@ div.player-bt {
     height: 100px;
 }
 
+div.player-bt-sm {
+    width: 50px;
+    height: 100px;
+}
+
 /* Images */
 img.player-bt {
-    width:70px;
-    height:70px;
+    width: 70px;
+    height: 70px;
+}
+
+img.player-bt-sm {
+    width: 30px;
+    height: 30px;
 }
 
 img.player-cover {
