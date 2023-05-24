@@ -4,8 +4,12 @@
         $buttonClassName .= '-sm';
 
     $parameters['id'] = $customer->id;
+
     if (isset($data['state']))
         $parameters['state'] = $data['state'];
+
+    if (isset($data['action']))
+        $parameters['action'] = $data['action'];
 @endphp
 
 <div class="{{ $buttonClassName }} center-img">

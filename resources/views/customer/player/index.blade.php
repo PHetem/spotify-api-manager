@@ -1,5 +1,14 @@
 
 
+@php
+    $buttonsData = [
+        ['action' => 'shuffle',   'image' => $playback['shuffleState']['image'],  'route' => 'customers.details.playback.state', 'state' => $playback['shuffleState']['value'], 'size' => 'small'],
+        ['action' => 'previous',  'image' => 'img/player/previous.png',           'route' => 'customers.details.playback.track'],
+        ['action' => 'playing',   'image' => $playback['playingState']['image'],  'route' => 'customers.details.playback.state', 'state' => $playback['playingState']['value']],
+        ['action' => 'next',      'image' => 'img/player/next.png',               'route' => 'customers.details.playback.track'],
+        ['action' => 'repeat',    'image' => $playback['repeatState']['image'],   'route' => 'customers.details.playback.state', 'state' => $playback['repeatState']['value'], 'size' => 'small']
+    ];
+@endphp
 <div class="border rounded row player-bg">
     <div class="col-2 center-img">
         @if (!is_null($playback['track']))
@@ -11,11 +20,9 @@
     <div class="col-8">
         <div style="display: grid;">
             <div class="wrapper" style="margin: 0 auto;">
-                @include('customer.player.button', ['data' => ['state' => $playback['shuffleState']['value'], 'image' => $playback['shuffleState']['image'], 'route' => 'customers.details.playback.switch.shuffle', 'size' => 'small']])
-                @include('customer.player.button', ['data' => ['image' => 'img/player/previous.png', 'route' => 'customers.details.playback.previous']])
-                @include('customer.player.button', ['data' => ['state' => $playback['playingState']['value'], 'image' => $playback['playingState']['image'], 'route' => 'customers.details.playback.switch.play']])
-                @include('customer.player.button', ['data' => ['image' => 'img/player/next.png', 'route' => 'customers.details.playback.next']])
-                @include('customer.player.button', ['data' => ['state' => $playback['repeatState']['value'], 'image' => $playback['repeatState']['image'], 'route' => 'customers.details.playback.switch.repeat', 'size' => 'small']])
+                @foreach ($buttonsData as $button)
+                    @include('customer.player.button', ['data' => $button])
+                @endforeach
             </div>
             <div class="border rounded player-track">
                 @if (!is_null($playback['track']))

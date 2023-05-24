@@ -11,7 +11,7 @@ use App\Http\Controllers\Media\ArtistController;
 use App\Http\Controllers\Media\PlaylistController;
 use App\Http\Controllers\Media\PodcastController;
 use App\Http\Controllers\Media\TrackController;
-use App\Http\Controllers\Playback\PlaybackController;
+use App\Http\Controllers\Playback\StateController;
 use App\Models\Customer\Customer;
 use Exception;
 use Illuminate\Http\Request;
@@ -51,7 +51,7 @@ class CustomerController extends Controller
         $customer = Customer::with('playlists', 'albums', 'podcasts', 'tracks', 'refreshToken', 'accessToken')
                             ->find($id);
 
-        $playback = PlaybackController::get($id);
+        $playback = app(StateController::class)->getPlayback();
 
         LogController::store('Customer Viewed: ' . $id);
         return view('customer.view', compact('customer', 'playback'));

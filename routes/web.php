@@ -5,7 +5,8 @@ use App\Http\Controllers\APIAuth\CustomerAuthController;
 use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LogController;
-use App\Http\Controllers\Playback\PlaybackController;
+use App\Http\Controllers\Playback\NavigationController;
+use App\Http\Controllers\Playback\StateController;
 use App\Http\Controllers\TestController;
 use App\Http\Middleware\APICustomerAuthMiddleware;
 use App\Http\Middleware\APIUserAuthMiddleware;
@@ -54,24 +55,14 @@ Route::middleware([Authenticate::class])->group(function () {
                     ->name('customers.refresh');
             });
 
-            Route::controller(PlaybackController::class)->group(function () {
-                Route::get('/customers/details/{id}/playback', 'get')
-                    ->name('customers.details.playback');
+            Route::controller(StateController::class)->group(function () {
+                Route::get('/customers/details/{id}/playback/switch/{action}/{state}', 'switchState')
+                    ->name('customers.details.playback.state');
+            });
 
-                Route::get('/customers/details/{id}/playback/previous', 'previousTrack')
-                    ->name('customers.details.playback.previous');
-
-                Route::get('/customers/details/{id}/playback/next', 'nextTrack')
-                    ->name('customers.details.playback.next');
-
-                Route::get('/customers/details/{id}/playback/switch/play/{state}', 'switchPlayingState')
-                    ->name('customers.details.playback.switch.play');
-
-                Route::get('/customers/details/{id}/playback/switch/shuffle/{state}', 'switchShuffleState')
-                    ->name('customers.details.playback.switch.shuffle');
-
-                Route::get('/customers/details/{id}/playback/switch/repeat/{state}', 'switchRepeatState')
-                    ->name('customers.details.playback.switch.repeat');
+            Route::controller(NavigationController::class)->group(function () {
+                Route::get('/customers/details/{id}/playback/track/{action}', 'changeTrack')
+                    ->name('customers.details.playback.track');
             });
         });
     });
