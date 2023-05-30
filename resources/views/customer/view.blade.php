@@ -3,7 +3,7 @@
 <div style="margin-top: 100px;">
     <div class="container">
         <div style="height: 150px; margin-bottom:30px;">
-            @include('customer.player.index')
+            @include('customer.player.index', ['customerID' => $customer->id])
         </div>
         <div class="row" style="height: 330px">
             <div class="col-7">

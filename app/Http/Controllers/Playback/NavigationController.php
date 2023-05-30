@@ -14,6 +14,6 @@ class NavigationController extends PlaybackController
 
         Http::withToken($this->token)->post($url);
 
-        return redirect()->route('customers.details', $this->customerID);
+        return view('customer.player.index', ['playback' => app(StateController::class)->getPlayback(), 'customerID' => $this->customerID]);
     }
 }

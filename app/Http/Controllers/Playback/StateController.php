@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Playback;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -20,7 +19,7 @@ class StateController extends PlaybackController
 
         Http::withToken($this->token)->withHeaders($data['headers'])->put($data['url'], $data['parameters']);
 
-        return redirect()->route('customers.details', $this->customerID);
+        return view('customer.player.index', ['playback' => $this->getPlayback(), 'customerID' => $this->customerID]);
     }
 
     private function getState() {
