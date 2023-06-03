@@ -64,11 +64,13 @@ class PlaybackController extends Controller
     }
 
     protected function getActiveDeviceID() {
-        $device = $this->getDevices()['devices'][0] ?? null;
+        $devices = $this->getDevices()['devices'];
 
-        if (is_null($device) || !$device['is_active'])
+        $activeDevice = array_search(true, array_column($devices, 'is_active', 'id'));
+
+        if (is_null($activeDevice) || !$activeDevice)
             throw new Exception('No active device available for user');
 
-        return $device['id'];
+        return $activeDevice;
     }
 }
