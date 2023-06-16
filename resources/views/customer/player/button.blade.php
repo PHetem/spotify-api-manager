@@ -1,14 +1,15 @@
 @php
+    $parameters['id'] = $customerID;
+    $parameters['action'] = $data['action'];
     $buttonClassName = 'player-bt';
-    if (isset($data['size']) && $data['size'] == 'small')
+
+    if (isset($data['small']) && $data['small'])
         $buttonClassName .= '-sm';
 
-    $parameters['id'] = $customerID;
 
     if (isset($data['state']))
         $parameters['state'] = $data['state'];
 
-    $parameters['action'] = $data['action'];
 @endphp
 
 <div class="{{ $buttonClassName }} center-img">

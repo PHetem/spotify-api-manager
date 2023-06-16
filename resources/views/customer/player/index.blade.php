@@ -2,11 +2,11 @@
 
 @php
     $buttonsData = [
-        ['action' => 'shuffle',   'image' => $playback['shuffleState']['image'],  'route' => 'customers.details.playback.state', 'state' => $playback['shuffleState']['value'], 'size' => 'small'],
-        ['action' => 'previous',  'image' => 'img/player/previous.png',           'route' => 'customers.details.playback.track'],
-        ['action' => 'playing',   'image' => $playback['playingState']['image'],  'route' => 'customers.details.playback.state', 'state' => $playback['playingState']['value']],
-        ['action' => 'next',      'image' => 'img/player/next.png',               'route' => 'customers.details.playback.track'],
-        ['action' => 'repeat',    'image' => $playback['repeatState']['image'],   'route' => 'customers.details.playback.state', 'state' => $playback['repeatState']['value'], 'size' => 'small']
+        ['action' => 'shuffle',  'image' => $playback['shuffleState']->image, 'route' => $playback['shuffleState']->route, 'state' => $playback['shuffleState']->value, 'small' => true],
+        ['action' => 'previous', 'image' => 'img/player/previous.png',        'route' => 'customers.details.playback.track'],
+        ['action' => 'playing',  'image' => $playback['playingState']->image, 'route' => $playback['playingState']->route, 'state' => $playback['playingState']->value],
+        ['action' => 'next',     'image' => 'img/player/next.png',            'route' => 'customers.details.playback.track'],
+        ['action' => 'repeat',   'image' => $playback['repeatState']->image,  'route' => $playback['repeatState']->route,  'state' => $playback['repeatState']->value,  'small' => true]
     ];
 @endphp
 <div id="player">
