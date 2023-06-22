@@ -31,10 +31,10 @@
                     @endif
                 @else
                     <li class="nav-item">
-                        @if (Auth::user()->isAdmin) <a class="nav-link" href="{{ route('users.details', Auth::user()->id) }}"> @else <span> @endif
+                        <a class="nav-link" href="{{ route('users.details', Auth::user()->id) }}">
                             <img style="width:20px; height:20px; border:0" src="{{ asset('img/user.png') }}">
                             {{ Auth::user()->name }}
-                        @if (Auth::user()->isAdmin)</a> @else </span> @endif
+                        </a>
                     </li>
 
                     @if (Auth::user()->isAdmin)
