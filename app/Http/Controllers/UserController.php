@@ -21,6 +21,12 @@ class UserController extends Controller
         return view('user.view', compact('user'));
     }
 
+    public function edit($id) {
+        $user = User::find($id);
+
+        return view('user.edit', compact('user'));
+    }
+
     public function editPass($id) {
         $user = User::find($id);
 
@@ -47,6 +53,10 @@ class UserController extends Controller
     private function treatData($request) {
         $data = [];
         $requestData = $request->all();
+
+        if (isset($requestData['name'])) {
+            $data['name'] = $requestData['name'];
+        }
 
         if (isset($requestData['password'])) {
             $request->validate([

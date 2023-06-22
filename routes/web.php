@@ -85,6 +85,9 @@ Route::middleware([Authenticate::class])->group(function () {
 
         Route::controller(UserController::class)->group(function () {
             Route::middleware(['password.confirm:,30'])->group(function () {
+                Route::get('/users/edit/{id}', 'edit')
+                    ->name('users.edit');
+
                 Route::get('/users/edit/pass/{id}', 'editPass')
                     ->name('users.pass.edit');
             });

@@ -22,6 +22,9 @@
         </div>
     </div>
     <div class="col-5 button-bottom">
+        <div style="text-align: right;">
+            <a class="btn btn-success" href="{{ route('users.edit', $user->id) }}">Edit</a>
+        </div>
         <div class="mt-2"style="text-align: right;">
             <a class="btn btn-success" href="{{ route('users.pass.edit', $user->id) }}">Update Password</a>
         </div>
