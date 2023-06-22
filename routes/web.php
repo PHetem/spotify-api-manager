@@ -83,6 +83,19 @@ Route::middleware([Authenticate::class])->group(function () {
                 ->name('customers.delete');
         });
 
+        Route::controller(UserController::class)->group(function () {
+            Route::middleware(['password.confirm:,30'])->group(function () {
+                Route::get('/users/edit/pass/{id}', 'editPass')
+                    ->name('users.pass.edit');
+            });
+
+            Route::put('/users/edit/{id}', 'update')
+                ->name('users.update');
+
+            Route::get('/users/details/{id}', 'details')
+                ->name('users.details');
+        });
+
         Route::middleware([IsAdmin::class])->group(function () {
 
             Route::controller(LogController::class)->group(function () {
@@ -93,9 +106,6 @@ Route::middleware([Authenticate::class])->group(function () {
             Route::controller(UserController::class)->group(function () {
                 Route::get('/users', 'list')
                     ->name('users.list');
-
-                Route::get('/users/details/{id}', 'details')
-                    ->name('users.details');
 
                 Route::get('/users/delete/{id}', 'delete')
                     ->withoutMiddleware([Navigate::class])

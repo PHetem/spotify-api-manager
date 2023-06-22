@@ -125,3 +125,13 @@ a.center-img {
     margin: auto;
     display: block;
 }
+
+div.button-bottom {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+input.switch:checked {
+    background-color: #198754;
+}
