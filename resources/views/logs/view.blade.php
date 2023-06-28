@@ -9,7 +9,7 @@
             <div class="table-title">
                 <span class="main-title">Logs</span>
             </div>
-            <table class="table table-striped table-half">
+            <table class="table table-striped table-half table-rounded">
                 <tr>
                     <td style="width:10%"><b>Id</b></td>
                     <td style="width:40%"><b>Action</b></td>

@@ -12,7 +12,7 @@
             <div class="table-title">
                 <span class="main-title">Users</span>
             </div>
-            <table class="table table-striped table-half">
+            <table class="table table-striped table-half table-rounded">
                 <tr>
                     <td style="width:15%"><b>ID</b></td>
                     <td style="width:55%"><b>User</b></td>

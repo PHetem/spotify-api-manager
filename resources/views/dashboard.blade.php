@@ -9,7 +9,7 @@
         <div class="table-title">
             <span  class="main-title">Customers</span>
             </div>
-            <table class="table table-striped table-half">
+            <table class="table table-striped table-half table-rounded">
                 <tr>
                     <td style="width:85%"><b>Name</b></td>
                     <td style="width:15%"><b>Remove</b></td>
