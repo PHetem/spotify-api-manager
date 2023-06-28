@@ -38,10 +38,20 @@
             </a>
         </div>
     </div>
+    <a href="{{ route('customers.details.playback', $customerID) }}" style="display: none;" class="player-auto-refresh"></a>
 </div>
 <script>
     $('a.player-bt-sel').click(function (e) {
         e.preventDefault();
-        $('#player').load($(this).attr('href'));
+        updatePlayer($(this).attr('href'));
+    });
+
+    function updatePlayer(href) {
+        $('#player').load(href);
+    }
+
+    $(function(){
+        let href = $('a.player-auto-refresh').attr('href');
+        setInterval(updatePlayer, 10000, href);
     });
 </script>
