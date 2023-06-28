@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Playback;
 
 use App\Http\Controllers\APITokenController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Customer\CustomerController;
 use App\Models\Media\Podcast;
 use App\Models\Media\Track;
 use App\Models\Playback\Playing;
@@ -107,5 +108,19 @@ class PlaybackController extends Controller
         $url = 'https://api.spotify.com/v1/me/player/queue';
 
         return Http::withToken($this->token)->get($url)->json()['queue'] ?? [];
+    }
+
+    public function addToQueue(Request $request) {
+        if (!isset($request['trackID']))
+            throw new Exception('trackID not set');
+
+        $url = 'https://api.spotify.com/v1/me/player/queue';
+        $url .= '?' . http_build_query(['uri' => 'spotify:track:' . $request['trackID']]);
+
+        $data['device_id'] = $this->getActiveDeviceID();
+
+        Http::withToken($this->token)->post($url, $data);
+
+        return (new CustomerController())->details($this->customerID);
     }
 }

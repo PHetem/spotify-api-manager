@@ -47,7 +47,7 @@ class CustomerController extends Controller
         return view('dashboard', compact('customers'));
     }
 
-    public static function details($id) {
+    public function details($id) {
         $customer = Customer::with('playlists', 'albums', 'podcasts', 'tracks', 'refreshToken', 'accessToken')
                             ->find($id);
 
