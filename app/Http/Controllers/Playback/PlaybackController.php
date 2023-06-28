@@ -87,6 +87,7 @@ class PlaybackController extends Controller
         $state['playingState'] = (new Playing(isset($result['is_playing']) && $result['is_playing'] ? 'on' : 'off'));
         $state['shuffleState'] = (new Shuffle(isset($result['is_playing']) && $result['shuffle_state'] ? 'on' : 'off'));
         $state['repeatState'] = (new Repeat($result['repeat_state'] ?? 'off'));
+        $state['queue'] = $this->getQueue();
 
         return $state;
     }
@@ -100,5 +101,11 @@ class PlaybackController extends Controller
 
     public function renderPlayer() {
         return view('customer.player.index', ['playback' => $this->getPlayback(), 'customerID' => $this->customerID]);
+    }
+
+    public function getQueue() {
+        $url = 'https://api.spotify.com/v1/me/player/queue';
+
+        return Http::withToken($this->token)->get($url)->json()['queue'] ?? [];
     }
 }
