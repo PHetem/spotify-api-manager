@@ -59,6 +59,9 @@ Route::middleware([Authenticate::class])->group(function () {
             Route::controller(PlaybackController::class)->group(function () {
                 Route::get('/customers/details/{id}/playback/get', 'renderPlayer')
                     ->name('customers.details.playback');
+
+                Route::post('/customers/details/{id}/queue/add', 'addToQueue')
+                    ->name('customers.details.queue.add');
             });
 
             Route::controller(StateController::class)->group(function () {
