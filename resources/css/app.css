@@ -135,3 +135,18 @@ div.button-bottom {
 input.switch:checked {
     background-color: #198754;
 }
+
+span.track-name {
+    margin-left: 40px;
+    color: aliceblue;
+}
+
+div.player-button-x-sm {
+    float: right;
+    margin-right: 10px;
+}
+
+img.player-button-x-sm {
+    height: 30px;
+    width: 30px;
+}
