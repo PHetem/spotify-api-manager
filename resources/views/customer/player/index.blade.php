@@ -34,7 +34,7 @@
             </a>
         </div>
     </div>
-    @include('customer.player.queue.list', ['queue' => $playback['queue']])
+    @include('customer.player.queue.list', ['queue' => $playback['queue'], $customerID])
     <a href="{{ route('customers.details.playback', $customerID) }}" style="display: none;" class="player-auto-refresh"></a>
 </div>
 <script>
