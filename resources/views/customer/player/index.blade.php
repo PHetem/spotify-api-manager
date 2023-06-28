@@ -25,11 +25,7 @@
                         @include('customer.player.button', ['data' => $button, $customerID])
                     @endforeach
                 </div>
-                <div class="border rounded player-track">
-                    @if (!is_null($playback['track']))
-                        <span style="color: aliceblue;">{{ $playback['track']->name }}</span>
-                    @endif
-                </div>
+                @include('customer.player.track', ['data' => $playback])
             </div>
         </div>
         <div class="col-2 center-img">
