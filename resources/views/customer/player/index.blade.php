@@ -34,6 +34,7 @@
             </a>
         </div>
     </div>
+    @include('customer.player.queue.list', ['queue' => $playback['queue']])
     <a href="{{ route('customers.details.playback', $customerID) }}" style="display: none;" class="player-auto-refresh"></a>
 </div>
 <script>
@@ -43,11 +44,17 @@
     });
 
     function updatePlayer(href) {
-        $('#player').load(href);
+        if (!isModalOpen()) {
+            $('#player').load(href);
+        }
     }
 
     $(function(){
         let href = $('a.player-auto-refresh').attr('href');
         setInterval(updatePlayer, 10000, href);
     });
+
+    function isModalOpen() {
+        return $('#modalBasic').attr('aria-modal') == 'true';
+    }
 </script>
