@@ -120,6 +120,6 @@ class PlaybackController extends Controller
 
         Http::withToken($this->token)->post($url, $data);
 
-        return (new CustomerController())->details($this->customerID);
+        return redirect()->route('customers.details', $this->customerID);
     }
 }
