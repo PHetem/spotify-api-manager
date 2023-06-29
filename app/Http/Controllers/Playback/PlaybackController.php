@@ -8,13 +8,12 @@ use App\Http\Controllers\Customer\CustomerController;
 use App\Models\Media\Podcast;
 use App\Models\Media\Track;
 use App\Models\Playback\Playing;
+use App\Models\Playback\Queue\Queue;
 use App\Models\Playback\Repeat;
 use App\Models\Playback\Shuffle;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Laravel\Ui\Presets\React;
-use Shmop;
 use Symfony\Component\Routing\Exception\InvalidParameterException;
 
 class PlaybackController extends Controller
@@ -107,26 +106,7 @@ class PlaybackController extends Controller
     public function getQueue() {
         $url = 'https://api.spotify.com/v1/me/player/queue';
 
-        return $this->mapQueue(Http::withToken($this->token)->get($url)->json());
-    }
-
-    public function mapQueue($queue) {
-        $result = [];
-
-        foreach ($queue['queue'] as $track) {
-            $response['name'] = $track['name'];
-
-            if ($track['type'] == 'track') {
-                $response['artist'] = $track['artists'][0]['name'];
-                $response['image'] = $track['album']['images'][0]['url'];
-            } else {
-                $response['artist'] = $track['show']['name'];
-                $response['image'] = $track['images'][0]['url'];
-            }
-
-            $result[] = $response;
-        }
-        return $result;
+        return new Queue(Http::withToken($this->token)->get($url)->json()['queue'] ?? []);
     }
 
     public function addToQueue(Request $request) {

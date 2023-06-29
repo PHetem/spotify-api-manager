@@ -3,7 +3,7 @@
 @section('title'){{ 'Queue' }}@overwrite
 @section('modal_content')
 
-    @if (empty($queue))
+    @if (empty($queue->tracks))
         <div class="table-pos">
             <div style="margin: 100px;">
                 <span class="main-title">No Tracks found</span>
@@ -13,7 +13,7 @@
     @else
         @include('customer.player.queue.insert', ['customerID' =>  $customerID])
         <table class="table table-striped table-half table-fit table-rounded">
-            @foreach ($queue as $track)
+            @foreach ($queue->tracks as $track)
                 @include('customer.player.queue.track', ['track' => $track])
             @endforeach
         </table>
