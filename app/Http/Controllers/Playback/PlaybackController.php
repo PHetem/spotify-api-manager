@@ -107,7 +107,26 @@ class PlaybackController extends Controller
     public function getQueue() {
         $url = 'https://api.spotify.com/v1/me/player/queue';
 
-        return Http::withToken($this->token)->get($url)->json()['queue'] ?? [];
+        return $this->mapQueue(Http::withToken($this->token)->get($url)->json());
+    }
+
+    public function mapQueue($queue) {
+        $result = [];
+
+        foreach ($queue['queue'] as $track) {
+            $response['name'] = $track['name'];
+
+            if ($track['type'] == 'track') {
+                $response['artist'] = $track['artists'][0]['name'];
+                $response['image'] = $track['album']['images'][0]['url'];
+            } else {
+                $response['artist'] = $track['show']['name'];
+                $response['image'] = $track['images'][0]['url'];
+            }
+
+            $result[] = $response;
+        }
+        return $result;
     }
 
     public function addToQueue(Request $request) {
