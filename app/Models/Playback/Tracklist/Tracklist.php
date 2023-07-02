@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\Playback\Queue;
+namespace App\Models\Playback\Tracklist;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Queue extends Model
+class Tracklist extends Model
 {
     use HasFactory;
 

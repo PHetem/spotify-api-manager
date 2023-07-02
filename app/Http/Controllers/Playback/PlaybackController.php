@@ -8,7 +8,7 @@ use App\Http\Controllers\Customer\CustomerController;
 use App\Models\Media\Podcast;
 use App\Models\Media\Track;
 use App\Models\Playback\Playing;
-use App\Models\Playback\Queue\Queue;
+use App\Models\Playback\Tracklist\Tracklist;
 use App\Models\Playback\Repeat;
 use App\Models\Playback\Shuffle;
 use Exception;
@@ -106,7 +106,7 @@ class PlaybackController extends Controller
     public function getQueue() {
         $url = 'https://api.spotify.com/v1/me/player/queue';
 
-        return new Queue(Http::withToken($this->token)->get($url)->json()['queue'] ?? []);
+        return new Tracklist(Http::withToken($this->token)->get($url)->json()['queue'] ?? []);
     }
 
     public function addToQueue(Request $request) {
