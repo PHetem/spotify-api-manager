@@ -12,9 +12,11 @@ class Track extends Model
     public $name;
     public $artist;
     public $image;
+    public $uri;
 
     public function __construct($track) {
         $this->name = $track['name'];
+        $this->uri = $track['uri'];
 
         if ($track['type'] == 'track') {
             $this->artist = $track['artists'][0]['name'];
