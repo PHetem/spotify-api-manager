@@ -8,6 +8,7 @@ use App\Http\Controllers\LogController;
 use App\Http\Controllers\Playback\NavigationController;
 use App\Http\Controllers\Playback\PlaybackController;
 use App\Http\Controllers\Playback\StateController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TestController;
 use App\Http\Middleware\APICustomerAuthMiddleware;
 use App\Http\Middleware\APIUserAuthMiddleware;
@@ -50,6 +51,14 @@ Route::middleware([Authenticate::class])->group(function () {
 
     Route::middleware([APIUserAuthMiddleware::class])->group(function () {
         // Requests to Spotify API
+        Route::controller(SearchController::class)->group(function () {
+            Route::get('/tracks/search/{id?}', 'renderSearch')
+                ->name('tracks.search');
+
+            Route::get('/tracks/list/{id?}', 'getTracks')
+                ->name('tracks.search.list');
+        });
+
         Route::middleware([APICustomerAuthMiddleware::class])->group(function () {
             Route::controller(CustomerController::class)->group(function () {
                 Route::get('/customers/refresh/{id}', 'refresh')
@@ -60,8 +69,11 @@ Route::middleware([Authenticate::class])->group(function () {
                 Route::get('/customers/details/{id}/playback/get', 'renderPlayer')
                     ->name('customers.details.playback');
 
-                Route::post('/customers/details/{id}/queue/add', 'addToQueue')
-                    ->name('customers.details.queue.add');
+                Route::get('/queue/{id}', 'renderQueue')
+                    ->name('tracks.queue');
+
+                Route::post('/queue/{id}/add/', 'addToQueue')
+                    ->name('tracks.queue.add');
             });
 
             Route::controller(StateController::class)->group(function () {
