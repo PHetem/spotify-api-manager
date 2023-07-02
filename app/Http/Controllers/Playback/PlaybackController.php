@@ -31,7 +31,7 @@ class PlaybackController extends Controller
     }
 
     protected function getCurrentTrack() {
-        $url = config('constants.spotify_base_url') . 'player/currently-playing';
+        $url = config('constants.spotify_base_url') . 'me/player/currently-playing';
         $data = ['additional_types' => 'episode'];
 
         $response = Http::withToken($this->token)->get($url, $data)->json();
@@ -63,7 +63,7 @@ class PlaybackController extends Controller
     }
 
     protected function getDevices() {
-        $url = config('constants.spotify_base_url') . 'player/devices';
+        $url = config('constants.spotify_base_url') . 'me/player/devices';
 
         return Http::withToken($this->token)->get($url)->json();
     }
@@ -80,7 +80,7 @@ class PlaybackController extends Controller
     }
 
     private function getState() {
-        $url = config('constants.spotify_base_url') . 'player';
+        $url = config('constants.spotify_base_url') . 'me/player';
 
         $result = Http::withToken($this->token)->get($url)->json();
 
@@ -104,7 +104,7 @@ class PlaybackController extends Controller
     }
 
     public function getQueue() {
-        $url = config('constants.spotify_base_url') . 'player/queue';
+        $url = config('constants.spotify_base_url') . 'me/player/queue';
 
         return new Tracklist(Http::withToken($this->token)->get($url)->json()['queue'] ?? []);
     }
@@ -113,7 +113,7 @@ class PlaybackController extends Controller
         if (!isset($request['trackID']))
             throw new Exception('trackID not set');
 
-        $url = config('constants.spotify_base_url') . 'player/queue';
+        $url = config('constants.spotify_base_url') . 'me/player/queue';
         $url .= '?' . http_build_query(['uri' => 'spotify:track:' . $request['trackID']]);
 
         $data['device_id'] = $this->getActiveDeviceID();

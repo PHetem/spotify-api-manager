@@ -34,7 +34,7 @@ class Customer extends Model
     }
 
     public static function getBaseRequestURL() {
-        return config('constants.spotify_base_url');
+        return config('constants.spotify_base_url') . 'me/';
     }
 
     public function refreshToken(): HasOne {

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Http;
 class NavigationController extends PlaybackController
 {
     public function changeTrack(Request $request) {
-        $url = config('constants.spotify_base_url') . 'player/' . $request['action'];
+        $url = config('constants.spotify_base_url') . 'me/player/' . $request['action'];
         $url .= '?' . http_build_query(['device_id' => $this->getActiveDeviceID()]);
 
         Http::withToken($this->token)->post($url);

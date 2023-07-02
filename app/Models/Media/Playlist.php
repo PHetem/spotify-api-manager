@@ -27,7 +27,7 @@ class Playlist extends Model
     }
 
     public static function getCustomerRequestURL() {
-        return config('constants.spotify_base_url') . 'playlists/';
+        return config('constants.spotify_base_url') . 'me/playlists/';
     }
 
     public function customer(): HasOne {

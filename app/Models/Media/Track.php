@@ -27,7 +27,7 @@ class Track extends Model
     }
 
     public static function getCustomerRequestURL() {
-        return config('constants.spotify_base_url') . 'tracks/';
+        return config('constants.spotify_base_url') . 'me/tracks/';
     }
 
     public function customer(): HasOne {

@@ -27,7 +27,7 @@ class Artist extends Model
     }
 
     public static function getCustomerRequestURL() {
-        return config('constants.spotify_base_url') . 'following/';
+        return config('constants.spotify_base_url') . 'me/following/';
     }
 
     public function customer(): HasOne {
