@@ -100,7 +100,7 @@ class PlaybackController extends Controller
     }
 
     public function renderPlayer() {
-        return view('customer.player.index', ['playback' => $this->getPlayback(), 'customerID' => $this->customerID]);
+        return view('player.index', ['playback' => $this->getPlayback(), 'customerID' => $this->customerID]);
     }
 
     public function getQueue() {
