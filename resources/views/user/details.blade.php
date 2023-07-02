@@ -25,8 +25,10 @@
         <div style="text-align: right;">
             <a class="btn btn-success" href="{{ route('users.edit', $user->id) }}">Edit</a>
         </div>
-        <div class="mt-2"style="text-align: right;">
-            <a class="btn btn-success" href="{{ route('users.pass.edit', $user->id) }}">Update Password</a>
-        </div>
+        @if (!Auth::user()->isAdmin || Auth::user()->id == $user->id)
+            <div class="mt-2"style="text-align: right;">
+                <a class="btn btn-success" href="{{ route('users.pass.edit', $user->id) }}">Update Password</a>
+            </div>
+        @endif
     </div>
 @overwrite
