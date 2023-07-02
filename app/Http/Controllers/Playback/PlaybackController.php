@@ -103,6 +103,10 @@ class PlaybackController extends Controller
         return view('player.index', ['playback' => $this->getPlayback(), 'customerID' => $this->customerID]);
     }
 
+    public function renderQueue() {
+        return view('tracks.queue.main', ['tracklist' => $this->getQueue(), 'customerID' => $this->customerID]);
+    }
+
     public function getQueue() {
         $url = config('constants.spotify_base_url') . 'me/player/queue';
 
@@ -110,16 +114,16 @@ class PlaybackController extends Controller
     }
 
     public function addToQueue(Request $request) {
-        if (!isset($request['trackID']))
-            throw new Exception('trackID not set');
+        if (!isset($request['uri']))
+            throw new Exception('uri not set');
 
         $url = config('constants.spotify_base_url') . 'me/player/queue';
-        $url .= '?' . http_build_query(['uri' => 'spotify:track:' . $request['trackID']]);
+        $url .= '?' . http_build_query(['uri' => $request['uri']]);
 
         $data['device_id'] = $this->getActiveDeviceID();
 
         Http::withToken($this->token)->post($url, $data);
 
-        return redirect()->route('customers.details', $this->customerID);
+        return $this->renderQueue();
     }
 }
