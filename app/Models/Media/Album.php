@@ -28,7 +28,7 @@ class Album extends Model
     }
 
     public static function getCustomerRequestURL() {
-        return 'https://api.spotify.com/v1/me/albums/';
+        return config('constants.spotify_base_url') . 'albums/';
     }
 
     public function customer(): HasOne {

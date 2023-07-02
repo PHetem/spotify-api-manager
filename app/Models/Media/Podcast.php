@@ -27,7 +27,7 @@ class Podcast extends Model
     }
 
     public static function getCustomerRequestURL() {
-        return 'https://api.spotify.com/v1/me/shows/';
+        return config('constants.spotify_base_url') . 'shows/';
     }
 
     public function customer(): HasOne {

@@ -13,7 +13,7 @@ class CustomerAuthController extends APIAuthController
     }
 
     protected static function getURL() {
-        return 'https://accounts.spotify.com/authorize?' . http_build_query(self::getData());
+        return config('constants.spotify_auth_base_url') . 'authorize?' . http_build_query(self::getData());
     }
 
     protected static function getData() {

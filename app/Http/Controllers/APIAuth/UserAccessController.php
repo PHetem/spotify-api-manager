@@ -12,7 +12,7 @@ class UserAccessController extends APIAuthController
     }
 
     protected static function getURL() {
-        return 'https://accounts.spotify.com/api/token';
+        return config('constants.spotify_auth_base_url') . 'api/token';
     }
 
     protected static function getData() {
