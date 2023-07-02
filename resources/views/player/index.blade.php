@@ -34,7 +34,7 @@
             </a>
         </div>
     </div>
-    @include('tracks.queue.list', ['tracklist' => $playback['queue'], $customerID])
+    @include('tracks.queue.index', ['tracklist' => $playback['queue'], $customerID])
     <a href="{{ route('customers.details.playback', $customerID) }}" style="display: none;" class="player-auto-refresh"></a>
 </div>
 <script>
@@ -57,14 +57,4 @@
     function isModalOpen() {
         return $('#modalBasic').attr('aria-modal') == 'true';
     }
-
-// $.ajax({
-//     url: origUrl.replace('{id}', feature_id),
-//     type: 'GET',
-//     dataType: 'json',
-//     success: function(response){
-//       console.log(response);
-//      }
-//     });
-//   });
 </script>
