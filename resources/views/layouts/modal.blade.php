@@ -4,9 +4,7 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="modalTitle">@yield('title')</h5>
             </div>
-            <div>
-                @yield('modal_content')
-            </div>
+            @yield('modal_content')
         </div>
     </div>
 </div>

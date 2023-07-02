@@ -22,10 +22,10 @@
             <div style="display: grid;">
                 <div class="wrapper" style="margin: 0 auto;">
                     @foreach ($buttonsData as $button)
-                        @include('customer.player.button', ['data' => $button, $customerID])
+                        @include('player.button', ['data' => $button, $customerID])
                     @endforeach
                 </div>
-                @include('customer.player.track', ['data' => $playback])
+                @include('player.track', ['data' => $playback])
             </div>
         </div>
         <div class="col-2 center-img">
@@ -34,7 +34,7 @@
             </a>
         </div>
     </div>
-    @include('customer.player.queue.list', ['queue' => $playback['queue'], $customerID])
+    @include('tracks.queue.list', ['tracklist' => $playback['queue'], $customerID])
     <a href="{{ route('customers.details.playback', $customerID) }}" style="display: none;" class="player-auto-refresh"></a>
 </div>
 <script>
@@ -57,4 +57,14 @@
     function isModalOpen() {
         return $('#modalBasic').attr('aria-modal') == 'true';
     }
+
+// $.ajax({
+//     url: origUrl.replace('{id}', feature_id),
+//     type: 'GET',
+//     dataType: 'json',
+//     success: function(response){
+//       console.log(response);
+//      }
+//     });
+//   });
 </script>
