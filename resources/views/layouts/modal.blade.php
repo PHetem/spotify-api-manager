@@ -4,7 +4,23 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="modalTitle">@yield('title')</h5>
             </div>
-            @yield('modal_content')
+            <div class="modal-body">
+                @yield('modal_content')
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+    function switchView(requestURL, requestData, requestType = 'GET') {
+        console.log(requestData);
+    $.ajax({
+            url: requestURL,
+            data: requestData,
+            type: requestType,
+            success: function(response){
+                $('.modal-body').html(response);
+            }
+        });
+    }
+</script>
