@@ -20,10 +20,10 @@ class Track extends Model
 
         if ($track['type'] == 'track') {
             $this->artist = $track['artists'][0]['name'];
-            $this->image = $track['album']['images'][0]['url'];
+            $this->image = $track['album']['images'][2]['url'];
         } else {
             $this->artist = $track['show']['name'];
-            $this->image = $track['images'][0]['url'];
+            $this->image = $track['images'][2]['url'];
         }
     }
 }

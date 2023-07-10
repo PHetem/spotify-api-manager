@@ -34,7 +34,7 @@ class TrackController extends MediaController
         $map['customerID'] = $id;
         $map['spotifyID'] = $data['id'];
         $map['name'] = $data['name'];
-        $map['imageURL'] = $data['album']['images'][0]['url'] ?? null;
+        $map['imageURL'] = $data['album']['images'][1]['url'] ?? $data['album']['images'][0]['url'] ?? null;
         $map['URL'] = Track::getBaseURL() . $data['id'];
 
         return $map;
