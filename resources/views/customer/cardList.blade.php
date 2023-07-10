@@ -6,7 +6,7 @@
         @if ($data->isEmpty())
             <span class="sub-title">User Has No {{ $title }} Available</span>
         @else
-        <table class="table table-striped table-rounded">
+        <table class="table">
             @foreach ($data as $item)
                 @php
                     $itemName = strlen($item->name) > 23 ? substr($item->name, 0, 20) . '...' : $item->name;
