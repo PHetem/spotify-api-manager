@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Playback\Player;
 
+use App\Helpers\ImageHelper;
 use App\Http\Controllers\Playback\DeviceController;
 use App\Http\Controllers\Playback\PlaybackController;
 use App\Models\Media\Podcast;
@@ -38,11 +39,11 @@ class NavigationController extends PlaybackController
         if ($trackType == 'track') {
             $item = new Track();
             $item->name = $trackName . ' - ' . $trackData['artists'][0]['name'];
-            $item->imageURL = $trackData['album']['images'][0]['url'] ?? null;
+            $item->imageURL = ImageHelper::getImageBySize($trackData['album']['images'], 'large');
         } elseif ($trackType == 'episode') {
             $item = new Podcast();
             $item->name = $trackName . ' - ' . $trackData['show']['name'];
-            $item->imageURL = $trackData['images'][0]['url'] ?? null;
+            $item->imageURL = ImageHelper::getImageBySize($trackData['images'], 'large');
         } else {
             return null;
         }

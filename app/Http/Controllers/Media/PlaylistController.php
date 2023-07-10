@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Media;
 
+use App\Helpers\ImageHelper;
 use App\Models\Media\Playlist;
 use InvalidArgumentException;
 
@@ -36,7 +37,7 @@ class PlaylistController extends MediaController
         $map['customerID'] = $id;
         $map['spotifyID'] = $data['id'];
         $map['name'] = $data['name'];
-        $map['imageURL'] = $data['images'][1]['url'] ?? $data['images'][0]['url'] ?? null;
+        $map['imageURL'] = ImageHelper::getImageBySize($data['images'], 'medium');
         $map['URL'] = Playlist::getBaseURL() . $data['id'];
 
         return $map;
