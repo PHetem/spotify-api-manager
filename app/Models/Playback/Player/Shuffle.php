@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Playback;
+namespace App\Models\Playback\Player;
 
 class Shuffle extends State {
     public function __construct($state) {

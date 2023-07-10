@@ -4,16 +4,9 @@ namespace App\Http\Controllers\Playback;
 
 use App\Http\Controllers\APITokenController;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Customer\CustomerController;
-use App\Models\Media\Podcast;
-use App\Models\Media\Track;
-use App\Models\Playback\Playing;
-use App\Models\Playback\Tracklist\Tracklist;
-use App\Models\Playback\Repeat;
-use App\Models\Playback\Shuffle;
-use Exception;
+use App\Http\Controllers\Playback\Player\NavigationController;
+use App\Http\Controllers\Playback\Player\StateController;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 use Symfony\Component\Routing\Exception\InvalidParameterException;
 
 class PlaybackController extends Controller
@@ -30,100 +23,21 @@ class PlaybackController extends Controller
         $this->token = APITokenController::getCustomerAccess($this->customerID)->token;
     }
 
-    protected function getCurrentTrack() {
-        $url = config('constants.spotify_base_url') . 'me/player/currently-playing';
-        $data = ['additional_types' => 'episode'];
-
-        $response = Http::withToken($this->token)->get($url, $data)->json();
-
-        $trackType = $response['currently_playing_type'];
-        $trackData = $response['item'];
-
-        $item = [];
-
-        $trackName = strlen($trackData['name']) > 80 ? substr($trackData['name'], 0, 77) . '...' : $trackData['name'];
-
-        if ($trackType == 'track') {
-            $item = new Track();
-
-            $item->name = $trackName . ' - ' . $trackData['artists'][0]['name'];
-            $item->imageURL = $trackData['album']['images'][0]['url'] ?? null;
-        } elseif ($trackType == 'episode') {
-            $item = new Podcast();
-            $item->name = $trackName . ' - ' . $trackData['show']['name'];
-            $item->imageURL = $trackData['images'][0]['url'] ?? null;
-        } else {
-            return null;
-        }
-
-        $item->URL = $item::getBaseURL() . $trackData['id'];
-        $item->spotifyID = $trackData['id'];
-
-        return $item;
-    }
-
-    protected function getDevices() {
-        $url = config('constants.spotify_base_url') . 'me/player/devices';
-
-        return Http::withToken($this->token)->get($url)->json();
-    }
-
-    protected function getActiveDeviceID() {
-        $devices = $this->getDevices()['devices'];
-
-        $activeDevice = array_search(true, array_column($devices, 'is_active', 'id'));
-
-        if (is_null($activeDevice) || !$activeDevice)
-            throw new Exception('No active device available for user');
-
-        return $activeDevice;
-    }
-
-    private function getState() {
-        $url = config('constants.spotify_base_url') . 'me/player';
-
-        $result = Http::withToken($this->token)->get($url)->json();
-
-        $state['playingState'] = (new Playing(isset($result['is_playing']) && $result['is_playing'] ? 'on' : 'off'));
-        $state['shuffleState'] = (new Shuffle(isset($result['is_playing']) && $result['shuffle_state'] ? 'on' : 'off'));
-        $state['repeatState'] = (new Repeat($result['repeat_state'] ?? 'off'));
-        $state['queue'] = $this->getQueue();
-
-        return $state;
-    }
-
     public function getPlayback() {
-        $data = $this->getState();
-        $data['track'] = $data['playingState']->state == 'on' ? $this->getCurrentTrack() : null;
+        $data = app(StateController::class)->getState();
+
+        if ($data['playingState']->state == 'on') {
+            $data['track'] = app(NavigationController::class)->getCurrentTrack();
+            $data['queue'] = app(QueueController::class)->getQueue();
+        } else {
+            $data['track'] = null;
+            $data['queue'] = null;
+        }
 
         return $data;
     }
 
     public function renderPlayer() {
         return view('player.index', ['playback' => $this->getPlayback(), 'customerID' => $this->customerID]);
-    }
-
-    public function renderQueue() {
-        return view('tracks.queue.main', ['tracklist' => $this->getQueue(), 'customerID' => $this->customerID]);
-    }
-
-    public function getQueue() {
-        $url = config('constants.spotify_base_url') . 'me/player/queue';
-
-        return new Tracklist(Http::withToken($this->token)->get($url)->json()['queue'] ?? []);
-    }
-
-    public function addToQueue(Request $request) {
-        if (!isset($request['uri']))
-            throw new Exception('uri not set');
-
-        $url = config('constants.spotify_base_url') . 'me/player/queue';
-        $url .= '?' . http_build_query(['uri' => $request['uri']]);
-
-        $data['device_id'] = $this->getActiveDeviceID();
-
-        Http::withToken($this->token)->post($url, $data);
-
-        return $this->renderQueue();
     }
 }

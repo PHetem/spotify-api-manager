@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Playback;
+namespace App\Models\Playback\Player;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

@@ -5,9 +5,10 @@ use App\Http\Controllers\APIAuth\CustomerAuthController;
 use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LogController;
-use App\Http\Controllers\Playback\NavigationController;
+use App\Http\Controllers\Playback\Player\NavigationController;
 use App\Http\Controllers\Playback\PlaybackController;
-use App\Http\Controllers\Playback\StateController;
+use App\Http\Controllers\Playback\Player\StateController;
+use App\Http\Controllers\Playback\QueueController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TestController;
 use App\Http\Middleware\APICustomerAuthMiddleware;
@@ -68,7 +69,9 @@ Route::middleware([Authenticate::class])->group(function () {
             Route::controller(PlaybackController::class)->group(function () {
                 Route::get('/customers/details/{id}/playback/get', 'renderPlayer')
                     ->name('customers.details.playback');
+            });
 
+            Route::controller(QueueController::class)->group(function () {
                 Route::get('/queue/{id}', 'renderQueue')
                     ->name('tracks.queue');
 
