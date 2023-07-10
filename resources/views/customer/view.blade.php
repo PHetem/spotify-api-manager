@@ -10,19 +10,25 @@
                 @include('customer.details', ['title' => 'Customer Details', 'data' => $customer])
             </div>
             <div class="col-5">
-                @include('customer.card', ['title' => 'Playlists', 'data' => $customer->playlists])
+                @include('customer.cardBlock', ['title' => 'Playlists', 'data' => $customer->playlists])
             </div>
             <div class="col-4" style="margin-top: 80px">
-                @include('customer.card', ['title' => 'Saved Artists', 'data' => $customer->artists])
+                @include('customer.cardBlock', ['title' => 'Saved Artists', 'data' => $customer->artists])
             </div>
             <div class="col-4" style="margin-top: 80px">
-                @include('customer.card', ['title' => 'Podcasts', 'data' => $customer->podcasts])
+                @include('customer.cardBlock', ['title' => 'Podcasts', 'data' => $customer->podcasts])
             </div>
             <div class="col-4" style="margin-top: 80px">
-                @include('customer.card', ['title' => 'Saved Albums', 'data' => $customer->albums])
+                @include('customer.cardBlock', ['title' => 'Saved Albums', 'data' => $customer->albums])
             </div>
             <div class="col-4" style="margin-top: 80px">
-                @include('customer.card', ['title' => 'Saved Tracks', 'data' => $customer->tracks])
+                @include('customer.cardBlock', ['title' => 'Saved Tracks', 'data' => $customer->tracks])
+            </div>
+            <div class="col-4" style="margin-top: 80px">
+                @include('customer.cardList', ['title' => 'Top Tracks', 'data' => $customer->topTracks])
+            </div>
+            <div class="col-4" style="margin-top: 80px">
+                @include('customer.cardList', ['title' => 'Top Artists', 'data' => $customer->topArtists])
             </div>
         </div>
     </div>
