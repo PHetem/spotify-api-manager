@@ -6,6 +6,8 @@ use App\Http\Controllers\APITokenController;
 use App\Http\Controllers\Controller;
 use App\Models\Media\Artist;
 use App\Models\Media\Playlist;
+use App\Models\Media\TopArtist;
+use App\Models\Media\TopTrack;
 use Illuminate\Support\Facades\Http;
 
 abstract class MediaController extends Controller
@@ -31,8 +33,16 @@ abstract class MediaController extends Controller
         $url = self::getCustomerUrl();
         $data = [];
 
-        if (static::$model == Artist::class)
-            $data['type'] = 'artist';
+        switch (static::$model) {
+            case Artist::class:
+                $data['type'] = 'artist';
+                break;
+
+            case TopArtist::class:
+            case TopTrack::class:
+                $data['limit'] = 10;
+                break;
+        }
 
         return Http::withToken($token)->get($url, $data)->json();
     }
@@ -42,9 +52,15 @@ abstract class MediaController extends Controller
 
         $model::where('customerID', $id)->delete();
 
+        $counter = 1;
+
         foreach ($data as $item) {
+            $item['counter'] = $counter;
+
             $map = static::mapResponse($id, $item);
             $model::updateOrCreate(['spotifyID' => $map['spotifyID']], $map);
+
+            $counter++;
         }
     }
 
