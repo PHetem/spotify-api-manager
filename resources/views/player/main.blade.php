@@ -38,9 +38,6 @@
 
 <script>
     function updatePlayer(href) {
-        console.log(intervalID);
-        console.log(Date.now()/1000);
-
         if (!isModalOpen()) {
             switchView('#player', href)
         }
