@@ -38,6 +38,9 @@
 
 <script>
     function updatePlayer(href) {
+        console.log(intervalID);
+        console.log(Date.now()/1000);
+
         if (!isModalOpen()) {
             switchView('#player', href)
         }
@@ -60,13 +63,14 @@
 
     $(document).ready(function (){
 
+        clearInterval(intervalID);
         $('a.player-bt-sel').click(function (e) {
             e.preventDefault();
             updatePlayer($(this).attr('href'));
         });
 
         let href = $('a.player-auto-refresh').attr('href');
-        setInterval(updatePlayer, 10000, href);
+        intervalID = setInterval(updatePlayer, 10000, href);
     });
 
 </script>
