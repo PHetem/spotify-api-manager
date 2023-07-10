@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Customer;
 
+use App\Helpers\ImageHelper;
 use App\Http\Controllers\APIAuth\CustomerAccessController;
 use App\Http\Controllers\APITokenController;
 use App\Http\Controllers\Controller;
@@ -10,6 +11,8 @@ use App\Http\Controllers\Media\AlbumController;
 use App\Http\Controllers\Media\ArtistController;
 use App\Http\Controllers\Media\PlaylistController;
 use App\Http\Controllers\Media\PodcastController;
+use App\Http\Controllers\Media\TopArtistController;
+use App\Http\Controllers\Media\TopTrackController;
 use App\Http\Controllers\Media\TrackController;
 use App\Http\Controllers\Playback\PlaybackController;
 use App\Models\Customer\Customer;
@@ -71,7 +74,7 @@ class CustomerController extends Controller
         $data['country'] = $user['country'];
         $data['followerCount'] = $user['followers']['total'];
         $data['profileURL'] = $user['href'];
-        $data['profilePictureURL'] = $user['images'][0]['url'];
+        $data['profilePictureURL'] = ImageHelper::getImageBySize($data['images'], 'large');
         $data['accountType'] = $user['product'];
 
         return $data;
@@ -93,5 +96,7 @@ class CustomerController extends Controller
         AlbumController::updateCustomerMedia($id);
         PodcastController::updateCustomerMedia($id);
         TrackController::updateCustomerMedia($id);
+        TopTrackController::updateCustomerMedia($id);
+        TopArtistController::updateCustomerMedia($id);
     }
 }
