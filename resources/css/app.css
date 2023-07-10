@@ -162,18 +162,29 @@ img.player-button-x-sm {
 }
 
 /* Queue */
-span.queue-track {
+span.list-number {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+span.list-track {
     font-weight: bold;
     font-size: 1.3em;
 }
 
-span.queue-artist {
+span.list-track-sm {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+span.list-artist {
     font-size: .9em;
     margin-left: 2em;
 }
 
-img.queue-album {
+img.list-album {
     width: 3em;
+    height: 3em;
     margin-right: 1em;
     border-radius: .4rem;
 }
