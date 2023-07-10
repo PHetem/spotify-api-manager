@@ -10,7 +10,7 @@
                 <span class="queue-artist">{{ $track->artist }}</span>
             </div>
             <div class="col-2">
-                <button style="float: right;" onclick="switchView('{{ route('tracks.queue.add', $customerID) }}', {uri: '{{ $track->uri }}', _token: '{{ csrf_token() }}'}, 'POST')" class="btn btn-success add-queue-bt">
+                <button style="float: right;" onclick="switchView('.modal-body', '{{ route('tracks.queue.add', $customerID) }}', {uri: '{{ $track->uri }}', _token: '{{ csrf_token() }}'}, 'POST')" class="btn btn-success add-queue-bt">
                     {{ ('+') }}
                 </button>
             </div>

@@ -6,7 +6,7 @@
     $(document).ready(function (){
 
         $('#modalBasic').on('hidden.bs.modal', function () {
-            switchView("{{ route('tracks.queue', $customerID) }}");
+            switchView('.modal-body', "{{ route('tracks.queue', $customerID) }}");
         })
     })
 </script>

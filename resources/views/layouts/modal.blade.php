@@ -12,15 +12,14 @@
 </div>
 
 <script>
-    function switchView(requestURL, requestData, requestType = 'GET') {
-        console.log(requestData);
-    $.ajax({
-            url: requestURL,
-            data: requestData,
-            type: requestType,
-            success: function(response){
-                $('.modal-body').html(response);
-            }
+    function switchView(elem, requestURL, requestData, requestType = 'GET') {
+        $.ajax({
+                url: requestURL,
+                data: requestData,
+                type: requestType,
+                success: function(response){
+                    $(elem).html(response);
+                }
         });
     }
 </script>

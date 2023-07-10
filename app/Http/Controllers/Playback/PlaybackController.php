@@ -38,6 +38,6 @@ class PlaybackController extends Controller
     }
 
     public function renderPlayer() {
-        return view('player.index', ['playback' => $this->getPlayback(), 'customerID' => $this->customerID]);
+        return view('player.main', ['playback' => $this->getPlayback(), 'customerID' => $this->customerID]);
     }
 }
