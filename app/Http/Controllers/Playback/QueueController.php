@@ -15,8 +15,7 @@ class QueueController extends PlaybackController
 
     public function getQueue() {
         $url = config('constants.spotify_base_url') . 'me/player/queue';
-
-        return new Tracklist(Http::withToken($this->token)->get($url)->json()['queue'] ?? []);
+        return new Tracklist(Http::retry(3, 200)->withToken($this->token)->get($url)->json()['queue'] ?? []);
     }
 
     public function addToQueue(Request $request) {
