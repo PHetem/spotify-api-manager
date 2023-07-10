@@ -7,6 +7,8 @@ use App\Models\Media\Album;
 use App\Models\Media\Artist;
 use App\Models\Media\Playlist;
 use App\Models\Media\Podcast;
+use App\Models\Media\TopArtist;
+use App\Models\Media\TopTrack;
 use App\Models\Media\Track;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -63,5 +65,13 @@ class Customer extends Model
 
     public function artists(): HasMany {
         return $this->hasMany(Artist::class, 'customerID', 'id');
+    }
+
+    public function topArtists(): HasMany {
+        return $this->hasMany(TopArtist::class, 'customerID', 'id');
+    }
+
+    public function topTracks(): HasMany {
+        return $this->hasMany(TopTrack::class, 'customerID', 'id');
     }
 }

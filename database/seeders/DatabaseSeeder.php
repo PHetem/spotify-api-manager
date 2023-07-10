@@ -8,6 +8,8 @@ use Database\Seeders\Media\ArtistSeeder;
 use Database\Seeders\Media\PlaylistSeeder;
 use Database\Seeders\Media\PodcastSeeder;
 use Database\Seeders\Media\TrackSeeder;
+use Database\Seeders\Media\TopTrackSeeder;
+use Database\Seeders\Media\TopArtistSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -27,6 +29,9 @@ class DatabaseSeeder extends Seeder
         $this->call(ArtistSeeder::class);
         $this->call(AlbumSeeder::class);
         $this->call(TrackSeeder::class);
+
+        $this->call(TopTrackSeeder::class);
+        $this->call(TopArtistSeeder::class);
 
         $this->call(APITokenSeeder::class);
     }
