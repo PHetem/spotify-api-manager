@@ -5,22 +5,23 @@ namespace App\Http\Controllers\Playback;
 use Exception;
 use Illuminate\Support\Facades\Http;
 
-class DeviceController
+class DeviceController extends PlaybackController
 {
-    private static function getDevices($token) {
+    public function getDevices() {
         $url = config('constants.spotify_base_url') . 'me/player/devices';
 
-        return Http::withToken($token)->get($url)->json();
+        return Http::withToken($this->token)->get($url)->json()['devices'] ?? [];
     }
 
-    public static function getActiveDeviceID($token) {
-        $devices = self::getDevices($token)['devices'] ?? [];
+    public function getActiveDeviceID() {
+        $devices = $this->getDevices();
 
-        $activeDevice = array_search(true, array_column($devices, 'is_active', 'id'));
+        return array_search(true, array_column($devices, 'is_active', 'id'));
+    }
 
-        if (is_null($activeDevice) || !$activeDevice)
-            throw new Exception('No active device available for user');
+    public function hasActiveDevice() {
+        $activeDevice = $this->getActiveDeviceID();
 
-        return $activeDevice;
+        return (!is_null($activeDevice) && $activeDevice);
     }
 }

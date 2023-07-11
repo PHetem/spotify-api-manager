@@ -16,7 +16,7 @@ class StateController extends PlaybackController
         $actionType = $request['action'];
         $class = ($actionType == 'shuffle' ? Shuffle::class : ($actionType == 'repeat' ? Repeat::class : Playing::class));
 
-        $data = (new $class($request['state']))->getParams(DeviceController::getActiveDeviceID($this->token));
+        $data = (new $class($request['state']))->getParams(app(DeviceController::class)->getActiveDeviceID());
         Http::withToken($this->token)->withHeaders($data['headers'])->put($data['url'], $data['parameters']);
 
         return $this->renderPlayer();

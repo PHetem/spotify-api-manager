@@ -14,7 +14,7 @@ class NavigationController extends PlaybackController
 {
     public function changeTrack(Request $request) {
         $url = config('constants.spotify_base_url') . 'me/player/' . $request['action'];
-        $url .= '?' . http_build_query(['device_id' => DeviceController::getActiveDeviceID($this->token)]);
+        $url .= '?' . http_build_query(['device_id' => app(DeviceController::class)->getActiveDeviceID()]);
 
         Http::withToken($this->token)->post($url);
 

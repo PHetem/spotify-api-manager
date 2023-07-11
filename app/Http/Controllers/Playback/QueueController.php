@@ -25,7 +25,7 @@ class QueueController extends PlaybackController
         $url = config('constants.spotify_base_url') . 'me/player/queue';
         $url .= '?' . http_build_query(['uri' => $request['uri']]);
 
-        $data['device_id'] = DeviceController::getActiveDeviceID($this->token);
+        $data['device_id'] = app(DeviceController::class)->getActiveDeviceID();
 
         Http::withToken($this->token)->post($url, $data);
 
