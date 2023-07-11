@@ -1,4 +1,5 @@
 @extends('layouts.modal')
+@section('modal_id'){{ 'queueModal' }}@overwrite
 
 @include('tracks.queue.list')
 

@@ -1,8 +1,8 @@
-<div class="modal fade" id="modalBasic" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+<div class="modal fade" id="@yield('modal_id')" tabindex="-1" role="dialog" aria-labelledby="@yield('modal_id')_title" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalTitle">@yield('title')</h5>
+                <h5 class="modal-title" id="@yield('modal_id')_title">@yield('title')</h5>
             </div>
             <div class="modal-body" style="padding: unset;">
                 @yield('modal_content')
