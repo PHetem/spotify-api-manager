@@ -10,7 +10,14 @@ class DeviceController extends PlaybackController
     public function getDevices() {
         $url = config('constants.spotify_base_url') . 'me/player/devices';
 
-        return Http::withToken($this->token)->get($url)->json()['devices'] ?? [];
+        $devices = Http::withToken($this->token)->get($url)->json()['devices'] ?? [];
+
+        foreach ($devices as $key => $device) {
+            // Direct access required to change original array and not reflection
+            $devices[$key]['icon'] = $this->getDeviceIcon($device);
+        }
+
+        return $devices;
     }
 
     public function getActiveDeviceID() {
@@ -23,5 +30,26 @@ class DeviceController extends PlaybackController
         $activeDevice = $this->getActiveDeviceID();
 
         return (!is_null($activeDevice) && $activeDevice);
+    }
+
+    public function getDeviceIcon($device) {
+        $icon = '';
+
+        switch ($device['type']) {
+            case 'Smartphone':
+            default:
+                $icon = 'Smartphone';
+                break;
+
+            case 'Computer':
+                $icon = 'Computer';
+                break;
+
+            case 'Speaker':
+                $icon = 'Speaker';
+                break;
+        }
+
+        return asset('img/device/' . $icon . '.png');;
     }
 }
