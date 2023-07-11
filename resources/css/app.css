@@ -146,6 +146,10 @@ input.switch:checked {
     background-color: #198754;
 }
 
+.form-check-input:checked {
+    background-color: #198754;
+}
+
 span.track-name {
     margin-left: 40px;
     color: aliceblue;
