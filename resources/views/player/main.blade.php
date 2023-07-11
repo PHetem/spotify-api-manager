@@ -34,6 +34,7 @@
     </div>
 </div>
 @include('tracks.queue.index', ['tracklist' => $playback['queue'], $customerID])
+@include('device.index', ['devices' => $playback['devices'], $customerID])
 <a href="{{ route('customers.details.playback', $customerID) }}" style="display: none;" class="player-auto-refresh"></a>
 
 <script>
@@ -44,7 +45,7 @@
     }
 
     function isModalOpen() {
-        return $('#modalBasic').attr('aria-modal') == 'true';
+        return $('#queueModal').attr('aria-modal') == 'true' || $('#deviceModal').attr('aria-modal') == 'true';
     }
 
     function switchView(elem, requestURL, requestData = [], requestType = 'GET') {
