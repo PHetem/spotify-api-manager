@@ -74,7 +74,7 @@ class CustomerController extends Controller
         $data['country'] = $user['country'];
         $data['followerCount'] = $user['followers']['total'];
         $data['profileURL'] = $user['href'];
-        $data['profilePictureURL'] = ImageHelper::getImageBySize($data['images'], 'large');
+        $data['profilePictureURL'] = ImageHelper::getImageBySize($user['images'], 'large');
         $data['accountType'] = $user['product'];
 
         return $data;
