@@ -26,12 +26,15 @@ class PlaybackController extends Controller
     public function getPlayback() {
         $data = app(StateController::class)->getState();
 
-        if ($data['playingState']->state == 'on') {
+        $DeviceController = app(DeviceController::class);
+        if ($DeviceController->hasActiveDevice()) {
             $data['track'] = app(NavigationController::class)->getCurrentTrack();
             $data['queue'] = app(QueueController::class)->getQueue();
+            $data['devices'] = $DeviceController->getDevices();
         } else {
             $data['track'] = null;
             $data['queue'] = null;
+            $data['devices'] = null;
         }
 
         return $data;
