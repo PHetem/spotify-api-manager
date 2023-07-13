@@ -14,11 +14,13 @@ class PlaybackController extends Controller
 
     protected $customerID;
     protected $token;
+    protected $data;
 
     public function __construct(Request $request) {
         if (!isset($request['id']))
             throw new InvalidParameterException('Missing customer ID');
 
+        $this->data = $request->all();
         $this->customerID = $request['id'];
         $this->token = APITokenController::getCustomerAccess($this->customerID)->token;
     }

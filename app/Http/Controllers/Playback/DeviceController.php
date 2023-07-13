@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Playback;
 
 use Exception;
 use Illuminate\Support\Facades\Http;
+use Symfony\Component\Routing\Exception\InvalidParameterException;
 
 class DeviceController extends PlaybackController
 {
@@ -51,5 +52,16 @@ class DeviceController extends PlaybackController
         }
 
         return asset('img/device/' . $icon . '.png');;
+    }
+
+    public function setDevice() {
+
+        if (!isset($this->data['selected_device']))
+            throw new InvalidParameterException('Missing device ID');
+
+        $url = config('constants.spotify_base_url') . 'me/player';
+        $data = json_encode(['device_ids' => [$this->data['selected_device']]]);
+
+        Http::withToken($this->token)->withBody($data)->put($url);
     }
 }

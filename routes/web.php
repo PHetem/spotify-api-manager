@@ -5,6 +5,7 @@ use App\Http\Controllers\APIAuth\CustomerAuthController;
 use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\Playback\DeviceController;
 use App\Http\Controllers\Playback\Player\NavigationController;
 use App\Http\Controllers\Playback\PlaybackController;
 use App\Http\Controllers\Playback\Player\StateController;
@@ -60,6 +61,7 @@ Route::middleware([Authenticate::class])->group(function () {
                 ->name('tracks.search.list');
         });
 
+        // Customer specific requests
         Route::middleware([APICustomerAuthMiddleware::class])->group(function () {
             Route::controller(CustomerController::class)->group(function () {
                 Route::get('/customers/refresh/{id}', 'refresh')
@@ -87,6 +89,11 @@ Route::middleware([Authenticate::class])->group(function () {
             Route::controller(NavigationController::class)->group(function () {
                 Route::get('/customers/details/{id}/playback/track/{action}', 'changeTrack')
                     ->name('customers.details.playback.track');
+            });
+
+            Route::controller(DeviceController::class)->group(function () {
+                Route::get('/customers/details/{id}/device/set', 'setDevice')
+                    ->name('customers.details.device.set');
             });
         });
     });
