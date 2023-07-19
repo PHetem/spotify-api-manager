@@ -7,12 +7,23 @@
         @endforeach
     </table>
     <div style="float: right; margin: 15px;">
-        {{-- <input type="button" class="btn btn-success" value="Select Device" onclick="selectDevice()"> --}}
+        <input type="button" class="btn btn-success" value="Select Device" data-bs-dismiss="modal" route="{{route('customers.details.device.set', $customerID)}}" onclick="selectDevice(this)">
     </div>
 </div>
 
 <script>
-    // function selectDevice() {
-    //     selected = $('input[name="selected_device"]:checked').val();
-    // }
+    function selectDevice(elem) {
+        {query: $('#query').val()}
+        let requestData = {'selected_device':$('input[name="selected_device"]:checked').val()};
+        let requestURL = elem.getAttribute('route');
+
+        $.ajax({
+                url: requestURL,
+                data: requestData,
+                type: 'GET',
+                success: function(response){
+                    $('#deviceModal').modal('hide');
+                }
+        });
+    }
 </script>
