@@ -14,7 +14,7 @@ use App\Http\Controllers\Media\PodcastController;
 use App\Http\Controllers\Media\TopArtistController;
 use App\Http\Controllers\Media\TopTrackController;
 use App\Http\Controllers\Media\TrackController;
-use App\Http\Controllers\Playback\PlaybackController;
+use App\Http\Controllers\CustomerOperations\PlaybackController;
 use App\Models\Customer\Customer;
 use Exception;
 use Illuminate\Http\Request;

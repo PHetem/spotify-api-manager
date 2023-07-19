@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Playback;
+namespace App\Http\Controllers\CustomerOperations;
 
 use Exception;
 use Illuminate\Support\Facades\Http;

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Playback\PlaybackController;
+use App\Http\Controllers\CustomerOperations\PlaybackController;
 use App\Models\Playback\Tracklist\Tracklist;
 use Exception;
 use Illuminate\Http\Request;

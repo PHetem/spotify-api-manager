@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Playback\Player;
+namespace App\Http\Controllers\CustomerOperations\Player;
 
-use App\Http\Controllers\Playback\DeviceController;
-use App\Http\Controllers\Playback\PlaybackController;
+use App\Http\Controllers\CustomerOperations\DeviceController;
+use App\Http\Controllers\CustomerOperations\PlaybackController;
 use App\Models\Playback\Player\Playing;
 use App\Models\Playback\Player\Repeat;
 use App\Models\Playback\Player\Shuffle;

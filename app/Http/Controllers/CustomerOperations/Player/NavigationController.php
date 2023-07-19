@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Playback\Player;
+namespace App\Http\Controllers\CustomerOperations\Player;
 
 use App\Helpers\ImageHelper;
-use App\Http\Controllers\Playback\DeviceController;
-use App\Http\Controllers\Playback\PlaybackController;
+use App\Http\Controllers\CustomerOperations\DeviceController;
+use App\Http\Controllers\CustomerOperations\PlaybackController;
 use App\Models\Media\Podcast;
 use App\Models\Media\Track;
 use Illuminate\Http\Request;

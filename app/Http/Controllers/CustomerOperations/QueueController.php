@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Playback;
+namespace App\Http\Controllers\CustomerOperations;
 
 use App\Models\Playback\Tracklist\Tracklist;
 use Exception;

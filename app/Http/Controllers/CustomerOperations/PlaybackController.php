@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Playback;
+namespace App\Http\Controllers\CustomerOperations;
 
 use App\Http\Controllers\APITokenController;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Playback\Player\NavigationController;
-use App\Http\Controllers\Playback\Player\StateController;
+use App\Http\Controllers\CustomerOperations\Player\NavigationController;
+use App\Http\Controllers\CustomerOperations\Player\StateController;
 use Illuminate\Http\Request;
 use Symfony\Component\Routing\Exception\InvalidParameterException;
 
@@ -32,12 +32,12 @@ class PlaybackController extends Controller
         if ($DeviceController->hasActiveDevice()) {
             $data['track'] = app(NavigationController::class)->getCurrentTrack();
             $data['queue'] = app(QueueController::class)->getQueue();
-            $data['devices'] = $DeviceController->getDevices();
         } else {
             $data['track'] = null;
             $data['queue'] = null;
-            $data['devices'] = null;
         }
+
+        $data['devices'] = $DeviceController->getDevices();
 
         return $data;
     }
