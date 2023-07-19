@@ -101,6 +101,7 @@ div.player-track {
     margin-bottom:25px;
     text-align: center;
     margin: auto;
+    display: flex;
 }
 
 img.icon {
@@ -151,13 +152,16 @@ input.switch:checked {
 }
 
 span.track-name {
-    margin-left: 40px;
     color: aliceblue;
 }
 
-div.player-button-x-sm {
+div.player-button-x-sm-right {
     float: right;
     margin-right: 10px;
+}
+
+div.player-button-x-sm {
+    margin-left: 10px;
 }
 
 img.player-button-x-sm {
