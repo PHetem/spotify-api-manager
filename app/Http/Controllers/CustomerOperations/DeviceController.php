@@ -63,5 +63,7 @@ class DeviceController extends PlaybackController
         $data = json_encode(['device_ids' => [$this->data['selected_device']]]);
 
         Http::withToken($this->token)->withBody($data)->put($url);
+
+        return redirect()->route('customers.details.playback.state', ['id' => $this->customerID, 'action' => 'playing', 'state' => 'on']);
     }
 }
