@@ -29,7 +29,10 @@ class PlaybackController extends Controller
         $data = app(StateController::class)->getState();
 
         $DeviceController = app(DeviceController::class);
-        if ($DeviceController->hasActiveDevice()) {
+
+        $hasActiveDevice = $DeviceController->hasActiveDevice();
+
+        if ($hasActiveDevice) {
             $data['track'] = app(NavigationController::class)->getCurrentTrack();
             $data['queue'] = app(QueueController::class)->getQueue();
         } else {
@@ -37,12 +40,13 @@ class PlaybackController extends Controller
             $data['queue'] = null;
         }
 
+        $data['hasActiveDevice'] = $hasActiveDevice;
         $data['devices'] = $DeviceController->getDevices();
 
         return $data;
     }
 
-    public function renderPlayer() {
-        return view('player.main', ['playback' => $this->getPlayback(), 'customerID' => $this->customerID]);
+    public function renderPlayer($params = []) {
+        return view('player.main', array_merge(['playback' => $this->getPlayback(), 'customerID' => $this->customerID], $params));
     }
 }
