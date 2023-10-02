@@ -8,6 +8,11 @@
         ['action' => 'next',     'image' => 'img/player/next.png',            'route' => 'customers.details.playback.track'],
         ['action' => 'repeat',   'image' => $playback['repeatState']->image,  'route' => $playback['repeatState']->route,  'state' => $playback['repeatState']->value,  'small' => true]
     ];
+
+    $hasActiveDevice = isset($playback['hasActiveDevice']) && $playback['hasActiveDevice'];
+    $needsDevice = isset($needsDevice) && $needsDevice;
+
+    $showSelectDeviceModal = $needsDevice && !$hasActiveDevice;
 @endphp
 <div class="border rounded row player-bg">
     <div class="col-2 center-img">
@@ -69,6 +74,10 @@
 
         let href = $('a.player-auto-refresh').attr('href');
         intervalID = setInterval(updatePlayer, 10000, href);
+
+        if ({{ json_encode($showSelectDeviceModal) }}) {
+            $('#deviceModal').modal('show');
+        }
     });
 
 </script>
