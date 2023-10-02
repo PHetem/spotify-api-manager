@@ -16,10 +16,12 @@ class StateController extends PlaybackController
         $actionType = $request['action'];
         $class = ($actionType == 'shuffle' ? Shuffle::class : ($actionType == 'repeat' ? Repeat::class : Playing::class));
 
+        $params['needsDevice'] = true;
+
         $data = (new $class($request['state']))->getParams(app(DeviceController::class)->getActiveDeviceID());
         Http::withToken($this->token)->withHeaders($data['headers'])->put($data['url'], $data['parameters']);
 
-        return $this->renderPlayer();
+        return $this->renderPlayer($params);
     }
 
     public function getState() {

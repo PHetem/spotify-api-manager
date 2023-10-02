@@ -18,7 +18,9 @@ class NavigationController extends PlaybackController
 
         Http::withToken($this->token)->post($url);
 
-        return $this->renderPlayer();
+        $params['needsDevice'] = true;
+
+        return $this->renderPlayer($params);
     }
 
     public function getCurrentTrack() {
