@@ -26,6 +26,18 @@
                             </div>
                         </div>
 
+                        @if (Auth::user()->isAdmin)
+                            <div class="row mb-3">
+                                <label for="is_admin" class="col-md-4 col-form-label text-md-end">{{ ('Is Admin?') }}</label>
+
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input switch" type="checkbox" id="is_admin" name="is_admin" {{ $user->isAdmin ? 'checked' : ''}}>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-success">

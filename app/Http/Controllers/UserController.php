@@ -56,6 +56,7 @@ class UserController extends Controller
 
         if (isset($requestData['name'])) {
             $data['name'] = $requestData['name'];
+            $data['isAdmin'] = $requestData['is_admin'] ?? false;
         }
 
         if (isset($requestData['password'])) {
