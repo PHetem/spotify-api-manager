@@ -47,6 +47,9 @@ class PlaybackController extends Controller
     }
 
     public function renderPlayer($params = []) {
+        if (!is_array($params))
+            $params = [];
+
         return view('player.main', array_merge(['playback' => $this->getPlayback(), 'customerID' => $this->customerID], $params));
     }
 }
