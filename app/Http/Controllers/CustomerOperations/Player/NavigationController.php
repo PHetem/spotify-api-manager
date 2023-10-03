@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\CustomerOperations\Player;
 
 use App\Helpers\ImageHelper;
+use App\Helpers\MathHelper;
 use App\Http\Controllers\CustomerOperations\DeviceController;
 use App\Http\Controllers\CustomerOperations\PlaybackController;
 use App\Models\Media\Podcast;
@@ -31,6 +32,7 @@ class NavigationController extends PlaybackController
 
         $trackType = $response['currently_playing_type'] ?? null;
         $trackData = $response['item'] ?? null;
+        $trackData['progress'] = $response['progress_ms'] ?? 0;
 
         return $this->mapTrack($trackType, $trackData);
     }
@@ -48,6 +50,11 @@ class NavigationController extends PlaybackController
             $item->imageURL = ImageHelper::getImageBySize($trackData['images'], 'large');
         } else {
             return null;
+        }
+
+        if (isset($trackData['progress']) && isset($trackData['duration_ms'])) {
+            $item->progressPercentage = MathHelper::getPercentage($trackData['progress'], $trackData['duration_ms']);
+            $item->secondPercentage = MathHelper::getPercentage(1000, $trackData['duration_ms']);
         }
 
         $item->URL = $item::getBaseURL() . $trackData['id'];
