@@ -31,9 +31,9 @@
             if (width >= 100)
                 clearInterval(progressIntervalID)
 
-            width = width + ({{ $data['track']['secondPercentage'] ?? 1}} * 2);
+            width = width + {{ $data['track']['secondPercentage'] ?? 1}};
 
             document.getElementById('progressBar').style.width = width + '%';
         }
-    }, 2000);
+    }, 1000);
 </script>
