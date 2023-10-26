@@ -10,7 +10,7 @@
                 @include('customer.details', ['title' => 'Customer Details', 'data' => $customer])
             </div>
             <div class="col-5">
-                @include('customer.cardBlock', ['title' => 'Playlists', 'data' => $customer->playlists])
+                @include('customer.cardBlock', ['title' => 'Playlists', 'header' => ['type' => 'button', 'text' => 'Create New Playlist', 'href' => 'playlists.create'], 'data' => $customer->playlists])
             </div>
             <div class="col-4" style="margin-top: 80px">
                 @include('customer.cardBlock', ['title' => 'Saved Artists', 'data' => $customer->artists])

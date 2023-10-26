@@ -209,3 +209,12 @@ img.list-album {
     margin-right: 1em;
     border-radius: .4rem;
 }
+
+div.card-header {
+    text-align: center;
+    vertical-align: middle;
+    position: sticky;
+    z-index: 100;
+    background-color: #F7F7F7;
+    top: 0px;
+}
