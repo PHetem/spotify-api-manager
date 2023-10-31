@@ -62,6 +62,10 @@ span.sub-title {
     font-size: 1em;
 }
 
+span.description {
+    font-size: .8em;
+}
+
 /* Player */
 .player-bg {
     height: 100%;
@@ -217,4 +221,15 @@ div.card-header {
     z-index: 100;
     background-color: #F7F7F7;
     top: 0px;
+}
+
+div.tool-button {
+    min-width: 200px;
+    min-height: 200px;
+}
+
+a.tool-button {
+    border-radius: .4rem;
+    min-width: 185px;
+    min-height: 185px;
 }

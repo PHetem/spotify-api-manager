@@ -10,8 +10,8 @@ use App\Http\Controllers\CustomerOperations\Player\NavigationController;
 use App\Http\Controllers\CustomerOperations\PlaybackController;
 use App\Http\Controllers\CustomerOperations\Player\StateController;
 use App\Http\Controllers\CustomerOperations\QueueController;
+use App\Http\Controllers\PlaylistTools\PlaylistToolsController;
 use App\Http\Controllers\SearchController;
-use App\Http\Controllers\TestController;
 use App\Http\Middleware\APICustomerAuthMiddleware;
 use App\Http\Middleware\APIUserAuthMiddleware;
 use App\Http\Middleware\Authenticate;
@@ -43,6 +43,12 @@ Route::controller(CustomerController::class)->group(function () {
             ->name('customers.create');
 });
 
+Route::middleware([Navigate::class])->group(function () {
+    Route::controller(PlaylistToolsController::class)->group(function () {
+        Route::get('/playlist/tools/list', 'listTools')
+                ->name('playlists.tools.list');
+    });
+});
 
 Route::middleware([Authenticate::class])->group(function () {
 
