@@ -5,7 +5,7 @@
                 <h5 class="modal-title" id="@yield('modal_id')_title">@yield('title')</h5>
             </div>
             <div class="modal-body" style="padding: unset;">
-                @yield('modal_content')
+                @yield('internal_content')
             </div>
         </div>
     </div>

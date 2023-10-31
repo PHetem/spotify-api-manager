@@ -1,6 +1,6 @@
 @section('title'){{ 'Add to Queue' }}@overwrite
 
-@section('modal_content')
+@section('internal_content')
 
 @include('tracks.search.main')
 

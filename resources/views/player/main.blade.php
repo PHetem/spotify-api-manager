@@ -1,5 +1,3 @@
-
-
 @php
     $buttonsData = [
         ['action' => 'shuffle',  'image' => $playback['shuffleState']->image, 'route' => $playback['shuffleState']->route, 'state' => $playback['shuffleState']->value, 'small' => true],

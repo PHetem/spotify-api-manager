@@ -1,4 +1,4 @@
-@section('modal_content')
+@section('internal_content')
 
 @section('title'){{ 'Queue' }}@overwrite
 
