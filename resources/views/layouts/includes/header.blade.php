@@ -29,6 +29,9 @@
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                     @endif
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('playlists.tools.list') }}">{{ 'Playlist Tools' }}</a>
+                    </li>
                 @else
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('users.details', Auth::user()->id) }}">
